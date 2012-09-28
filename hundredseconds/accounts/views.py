@@ -32,7 +32,7 @@ def birthdays(request):
     inbox = get_inbox(request.user)
 
 
-    data = getData(events,bdays,inbox)
+    data = getData(events.text,bdays.text,inbox.text)
 
 
 
