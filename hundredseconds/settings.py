@@ -61,6 +61,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    os.path.join(SITE_ROOT, 'static/'),
 )
 
 # List of finder classes that know how to find static files in
@@ -167,7 +168,7 @@ FACEBOOK_APP_ID = '420588444667164'
 FACEBOOK_API_SECRET = '953cac899ca6f17b400191cd071e3b66'
 
 # Twilio
-ACCOUNT_SID = 'ACd9069181b7ebff5c6fe8d62d6ee8b15e' 
+ACCOUNT_SID = 'ACd9069181b7ebff5c6fe8d62d6ee8b15e'
 AUTH_TOKEN = '4e0d3996074d07b5d9a42be566e4161f'
 OUTGOING_NUMBER = '+48128810896'
 
