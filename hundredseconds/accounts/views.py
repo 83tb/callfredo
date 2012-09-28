@@ -1,7 +1,7 @@
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import UpdateView
 from hundredseconds.accounts.forms import UserPhoneForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 
 TEMPLATES_DIR = 'accounts/'
 
@@ -19,3 +19,8 @@ class PhoneUpdateView(UpdateView):
     def get_success_url(self):
         referer = request.META.get('HTTP_REFERER', '/')
         return HttpResponseRedirect(referer)
+
+
+def birthdays(request):
+    data = get_firends_birthdays(request.user)
+    return HttpResponse(data)
