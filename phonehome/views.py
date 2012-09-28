@@ -50,5 +50,5 @@ def recording(request):
         except User.DoesNotExist:
             user = None
     
-    return direct_to_template('phonehome/afterrecording.xml',
+    return direct_to_template(request, template='phonehome/afterrecording.xml',
                               extra_context={'user': user})
