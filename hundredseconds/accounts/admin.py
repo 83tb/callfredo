@@ -34,7 +34,10 @@ class CustomUserAdmin(UserAdmin):
 
     def call(self, obj):
         if obj.phone:
-            return '<a href="%s">Call</a>' % reverse('call', kwargs={'number': obj.phone})
+            try:
+                return '<a href="%s">Call</a>' % reverse('call', kwargs={'number': obj.phone})
+            except:
+                return 'Invalid'
         else:
             return '--'
     call.allow_tags = True
