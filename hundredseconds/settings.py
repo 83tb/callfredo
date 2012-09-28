@@ -107,6 +107,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'phonehome',
     'django.contrib.admin',
     'south',
     'social_auth',
@@ -142,6 +143,7 @@ LOGGING = {
     }
 }
 
+
 # Auth settings
 CUSTOM_USER_MODEL = 'accounts.User'
 SOCIAL_AUTH_USER_MODEL = CUSTOM_USER_MODEL
@@ -163,3 +165,8 @@ FACEBOOK_EXTENDED_PERMISSIONS = []
 
 FACEBOOK_APP_ID = '420588444667164'
 FACEBOOK_API_SECRET = '953cac899ca6f17b400191cd071e3b66'
+
+try:
+    import localsettings
+except ImportError:
+    pass

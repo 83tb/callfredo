@@ -7,8 +7,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', views.IndexView.as_view(), name='index'),
-
     url(r'^social/', include(social_auth_urls)),
-
+    url('^phone/', include('phonehome.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )
