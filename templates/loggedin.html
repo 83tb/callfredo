@@ -1,5 +1,16 @@
 {% extends "index.html" %}
 
+{% block extrahead %}
+<script>
+$(function () {
+    $('#id_phone').bind('input', function (event) {
+        $('#id_phone').val($('#id_phone').val().replace(/[^0-9]/g, ''))
+    }).trigger('input');
+    
+});
+</script>
+{% endblock %}
+
 {% block content %}
     <div style="width: 600px; margin: 0 auto;">
 	    <form action="{% url accounts:phone %}" method="post">{% csrf_token %}
