@@ -41,8 +41,8 @@ def get_graph_data(user, path, data=None):
         'access_token': social_user.extra_data.get('access_token'),
     })
     url = FACEBOOK_ME + path
-    r = requests.get(url, data=data)
-    return data, r
+    r = requests.get(url, params=data)
+    return r
 
 def get_friends_birthdays(user):
     return get_graph_data(user, 'friends', {'fields': 'birthday'})

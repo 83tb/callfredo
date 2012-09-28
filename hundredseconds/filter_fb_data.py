@@ -2051,8 +2051,3 @@ def get_today_bdays(bdays):
             pass
 
     return today_birthdays
-
-
-print get_only_today_events(events)
-print get_unread_count(inbox)
-print get_today_bdays(bdays)
