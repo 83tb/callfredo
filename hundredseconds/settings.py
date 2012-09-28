@@ -176,6 +176,11 @@ SOCIAL_AUTH_BACKEND_ERROR_URL = '/accounts/social-error/'
 FACEBOOK_EXTENDED_PERMISSIONS = []
 
 
+# Twilio
+ACCOUNT_SID = 'ACd9069181b7ebff5c6fe8d62d6ee8b15e' 
+AUTH_TOKEN = '4e0d3996074d07b5d9a42be566e4161f'
+
+
 try:
     import localsettings
 except ImportError:

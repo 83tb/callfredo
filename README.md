@@ -1,2 +1,16 @@
-earbook
-=======
+100seconds
+==========
+
+Quick start
+-----------
+
+<pre>
+cd 100seconds
+virtualenv --distribute --no-site-packages env
+source env/bin/activate
+pip install -r requirements.txt
+cp hundredseconds/localsettings.py{.template,}
+./manage.py runserver
+</pre>
+
+Go to http://localhost:8000/ Should work!
