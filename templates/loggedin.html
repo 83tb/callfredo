@@ -4,6 +4,7 @@
     <div style="width: 600px; margin: 0 auto;">
 	    <form action="{% url accounts:phone %}" method="post">{% csrf_token %}
 	        {{ form }}
+	        <p>for example: 48666999333 (yes without plus sign) </p>
 	        <p style="float: right;"><a href="javascript:;" onclick="$('form').submit();"><img src="{{ STATIC_URL }}img/savemynumber.png" /></a></p>
 	        <div style="clear:both;"></div>
 	    </form>
