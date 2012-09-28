@@ -9,4 +9,3 @@ env
 sqlite.db
 localsettings.py
 *.iml
-.idea/
