@@ -7,10 +7,17 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
     <script type="text/javascript" src="../static/js/bootstrap.min.js" /></script>
 
+{% block topbar %}
+Hi!
+{% endblock %}
 
-</head>
-<body>
-<h1>Bootstrap</h1>
-</body>
-</html>
+{% block content %}
 
+{% if user.is_authenticated %}
+You are logged in as {{ user.username }}!<br>
+<a href="{% url accounts:logout %}">Logout</a>
+{% else %}
+<a href="{% url socialauth_begin 'facebook' %}">Login with Facebook</a>
+{% endif %}
+
+{% endblock %}

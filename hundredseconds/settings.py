@@ -1,10 +1,13 @@
+import os
 import dj_database_url
+
+SITE_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-
+    # ('Your Name', 'your_email@example.com'),
 )
 
 MANAGERS = ADMINS
@@ -58,6 +61,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    os.path.join(SITE_ROOT, 'static/'),
 )
 
 # List of finder classes that know how to find static files in
@@ -94,9 +98,7 @@ ROOT_URLCONF = 'hundredseconds.urls'
 WSGI_APPLICATION = 'hundredseconds.wsgi.application'
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(SITE_ROOT, './templates'),
 )
 
 INSTALLED_APPS = (
@@ -106,10 +108,11 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+    'phonehome',
+    'django.contrib.admin',
+    'south',
+    'social_auth',
+    'hundredseconds.accounts',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -140,3 +143,37 @@ LOGGING = {
         },
     }
 }
+
+
+# Auth settings
+CUSTOM_USER_MODEL = 'accounts.User'
+SOCIAL_AUTH_USER_MODEL = CUSTOM_USER_MODEL
+
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.facebook.FacebookBackend',
+    'hundredseconds.accounts.backends.UserModelBackend',
+)
+
+SOCIAL_AUTH_ENABLED_BACKENDS = ('facebook',)
+
+LOGIN_REDIRECT_URL = '/'
+SOCIAL_AUTH_NEW_USER_REDIRECT_URL = '/'
+SOCIAL_AUTH_NEW_ASSOCIATION_REDIRECT_URL = '/'
+SOCIAL_AUTH_BACKEND_ERROR_URL = '/accounts/social-error/'
+
+# Facebook perms
+FACEBOOK_EXTENDED_PERMISSIONS = []
+
+FACEBOOK_APP_ID = '420588444667164'
+FACEBOOK_API_SECRET = '953cac899ca6f17b400191cd071e3b66'
+
+# Twilio
+ACCOUNT_SID = 'ACd9069181b7ebff5c6fe8d62d6ee8b15e'
+AUTH_TOKEN = '4e0d3996074d07b5d9a42be566e4161f'
+OUTGOING_NUMBER = '+48128810896'
+
+
+try:
+    from localsettings import *
+except ImportError:
+    pass

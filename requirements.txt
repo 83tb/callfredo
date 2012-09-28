@@ -1,4 +1,9 @@
 wsgiref==0.1.2
+requests==0.10.4
+twilio
 Django==1.4.1
 distribute==0.6.15
 dj-database-url==0.2.1
+psycopg2==2.4.5
+django-social-auth==0.7.6
+South==0.7.6

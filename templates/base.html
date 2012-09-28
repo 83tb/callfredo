@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:fb="http://ogp.me/ns/fb#" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes" />
+    <title>100seconds</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}screen.css" media="Screen" type="text/css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}mobile.css" media="handheld, only screen and (max-width: 480px), only screen and (max-device-width: 480px)" type="text/css" />
+
+    <meta content="" property="og:title" />
+    <meta content="" property="og:type" />
+    <meta content="" property="og:url" />
+    <meta content="" property="og:image" />
+    <meta content="" property="og:site_name" />
+
+    <script type="text/javascript" src="/static/jquery-1.7.1.min.js"></script>
+  </head>
+  <body>
+      <script type="text/javascript">
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '420588444667164', // App ID
+          // channelUrl : '{{ channel_url }}', // Channel File
+          status     : true, // check login status
+          cookie     : true, // enable cookies to allow the server to access the session
+          xfbml      : true // parse XFBML
+        });
+      };
+      // Load the SDK Asynchronously
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <header>
+      {% block topbar %}
+
+      {% endblock %}
+    </header>
+    <section class="content">
+    {% block content%}
+    {% endblock %}
+    </section>
+    <footer>
+    </footer>
+  </body>
+</html>
