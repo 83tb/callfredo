@@ -15,3 +15,5 @@ class Recording(models.Model):
     recipient = models.CharField(max_length=240)
     duration = models.IntegerField()
     url = models.CharField(max_length=240)
+
+
