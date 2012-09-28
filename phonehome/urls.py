@@ -2,6 +2,6 @@ from django.conf.urls import patterns, url
 
 
 urlpatterns = patterns(
-    '',
-    url(r'^$', 'django.views.generic.simple.direct_to_template', {'template': 'phonehome/default.xml'}),
+    'phonehome.views',
+    url(r'^$', 'phone'),
 )
