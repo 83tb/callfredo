@@ -5,5 +5,8 @@ class IndexView(TemplateView):
     template_name = 'index.html'
 
 
-class PlayerView(TemplateView):
-    template_name = 'player.html'
+def PlayerView(request):
+
+    code = request.GET['code']
+    return render_to_response('player.html', {'code':code })
+
