@@ -11,14 +11,26 @@ class SocialErrorView(TemplateView):
     template_name = TEMPLATES_DIR + 'error.html'
 
 
+class LoggedInView(TemplateView):
+    template_name = 'loggedin.html'
+
+    def get_context_data(self, **kwargs):
+        data = super(LoggedInView, self).get_context_data(**kwargs)
+        data['form'] = UserPhoneForm()
+        if self.request.user.is_authenticated():
+            data['form'] = UserPhoneForm(instance=self.request.user)
+        return data
+
+
 class PhoneUpdateView(UpdateView):
     form_class = UserPhoneForm
 
     def get_object(self):
         return self.request.user
 
-    def get_success_url(self):
-        referer = request.META.get('HTTP_REFERER', '/')
+    def form_valid(self, form):
+        super(PhoneUpdateView, self).form_valid(form)
+        referer = self.request.META.get('HTTP_REFERER', '/')
         return HttpResponseRedirect(referer)
 
 
@@ -32,7 +44,7 @@ def birthdays(request):
     inbox = get_inbox(request.user)
 
 
-    data = getData(events.text,bdays.text,inbox.text)
+    data = getData(events.text, bdays.text, inbox.text)
 
 
 

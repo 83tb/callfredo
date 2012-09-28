@@ -1,6 +1,7 @@
 from django.views.generic.base import TemplateView
 from django.shortcuts import render_to_response
 from accounts.models import User
+from hundredseconds.accounts.forms import UserPhoneForm
 
 
 class IndexView(TemplateView):
@@ -19,7 +20,7 @@ from phonehome.models import Call
 from datetime import datetime
 
 
-def getData(events,bdays,inbox):
+def getData(events, bdays, inbox):
 
     now = datetime.now()
     data = {
@@ -30,7 +31,7 @@ def getData(events,bdays,inbox):
         }
 
 
-    Call.create(fetched_date=now,data = str(data),user = User.objects.filter(id=1))
+    Call.create(fetched_date=now, data=str(data), user=User.objects.filter(id=1))
 
     return data
 

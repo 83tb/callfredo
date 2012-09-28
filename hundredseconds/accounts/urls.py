@@ -8,4 +8,5 @@ urlpatterns = patterns('',
 
     url(r'^phone/$', login_required(views.PhoneUpdateView.as_view()), name='phone'),
     url(r'^birthdays/$', login_required(views.birthdays), name='birthdays'),
+    url(r'^profile/$', login_required(views.LoggedInView.as_view()), name='loggedin'),
 )

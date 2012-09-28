@@ -1,9 +1,8 @@
 {% extends "index.html" %}
 
 {% block content %}
-    <form action="" method="post">
-    <p><span>Your phone number is </span><input type="text" value="+48 502 926 090" /></p>
-    <p><a href="javascript:;" onclick="$('form').submit();"><img src="img/savemynumber.png" /></a></p>
+    <form action="{% url accounts:phone %}" method="post">{% csrf_token %}
+    {{ form }}
+    <p><a href="javascript:;" onclick="$('form').submit();"><img src="{{ STATIC_URL }}img/savemynumber.png" /></a></p>
     </form>
-
 {% endblock content %}
