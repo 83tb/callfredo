@@ -7,3 +7,9 @@ env
 .settings
 sqlite.db
 localsettings.py
+
+*.iml
+
+*.iml
+
+*.xml
