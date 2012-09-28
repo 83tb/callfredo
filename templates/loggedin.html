@@ -1,8 +1,17 @@
 {% extends "index.html" %}
 
 {% block content %}
-    <form action="{% url accounts:phone %}" method="post">{% csrf_token %}
-    {{ form }}
-    <p><a href="javascript:;" onclick="$('form').submit();"><img src="{{ STATIC_URL }}img/savemynumber.png" /></a></p>
-    </form>
+    <div style="width: 600px; margin: 0 auto;">
+	    <form action="{% url accounts:phone %}" method="post">{% csrf_token %}
+	        {{ form }}
+	        <p style="float: right;"><a href="javascript:;" onclick="$('form').submit();"><img src="{{ STATIC_URL }}img/savemynumber.png" /></a></p>
+	        <div style="clear:both;"></div>
+	    </form>
+    </div>
+    {% if user.phone %}
+    <br><br>
+    <div class="intro">
+        <p><a href="#">Click here</a> to get you daily show! The server will call on you phone!</p>
+    </div>
+    {% endif %}
 {% endblock content %}
