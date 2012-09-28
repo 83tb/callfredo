@@ -23,8 +23,8 @@ class PhoneUpdateView(UpdateView):
 
 
 def birthdays(request):
-    #data = get_friends_birthdays(request.user)
-    user = request.user
+    data = get_friends_birthdays(request.user)
+    '''user = request.user
     social_user = user.social_auth.get(provider='facebook')
-    at = social_user.extra_data.get('access_token'),
-    return HttpResponse(at)
+    at = social_user.extra_data.get('access_token'), '''
+    return HttpResponse(str(data))

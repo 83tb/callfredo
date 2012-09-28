@@ -42,7 +42,7 @@ def get_graph_data(user, path, data=None):
     })
     url = FACEBOOK_ME + path
     r = requests.get(url, data=data)
-    return r
+    return data, r
 
 def get_friends_birthdays(user):
     return get_graph_data(user, 'friends', {'fields': 'birthday'})
