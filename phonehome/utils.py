@@ -1,7 +1,7 @@
 import base64
 import zlib
 
-import simplejson as json
+import json
 
 from django import forms
 from django.forms import widgets
@@ -126,6 +126,6 @@ else:
             'json_type': ['get_json_type', {'default': None}],
             'compress': ['compress', {'default': False}],
         },
-    )], ["^utilities\.models\.JSONField"])
+    )], ["^phonehome\.utils\.JSONField"])
 
     add_introspection_rules([], ["^utilities\.models\.AutoSlugField"])
