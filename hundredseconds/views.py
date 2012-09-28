@@ -32,6 +32,7 @@ def getData(events,bdays,inbox):
 
     Call.create(fetched_date=now,data = str(data),user = User.objects.filter(id=1))
 
+    return data
 
 
 

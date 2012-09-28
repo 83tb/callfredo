@@ -46,6 +46,10 @@ def recording(request):
         try:
             user = User.objects.get(phone=number)
             # TODO: Post to Facebook here
+
+
+
+
         except User.DoesNotExist:
             pass
 
