@@ -1,3 +1,4 @@
+from facebook import GraphAPI, GraphAPIError
 from twilio.rest import TwilioRestClient
 
 from django.views.decorators.csrf import csrf_exempt
@@ -46,8 +47,16 @@ def recording(request):
         number = request.POST.get('To')[1:] # Remove leading '+'
         try:
             user = User.objects.get(phone=number)
-            # TODO: Post to Facebook here
-        except User.DoesNotExist:
+            social_user = user.social_auth.get(provider='facebook')
+            api = GraphAPI(social_user.extra_data.get('access_token'))
+            api.put_wall_post("Wishing you a happy birthday!",
+                              profile_id='1557648750', # TODO: Change from Ola to dynamic
+                              attachment= {'name': 'Your Birthday Wishes!',
+                                           'link': request.POST.get('RecordingUrl') + '.mp3', 
+                                           'caption': '',
+                                           'description': '',
+                                           'picture': 'http://desolate-escarpment-8965.herokuapp.com/static/img/cakeisalie.jpeg'})
+        except (User.DoesNotExist, GraphAPIError):
             user = None
     
     return direct_to_template(request, template='phonehome/afterrecording.xml',
