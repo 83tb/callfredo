@@ -1,18 +1,14 @@
 from django.conf.urls import patterns, include, url
+from django.contrib import admin
+from social_auth import urls as social_auth_urls
+from hundredseconds import views
 
-# Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'hundredseconds.views.home', name='home'),
-    # url(r'^hundredseconds/', include('hundredseconds.foo.urls')),
-    
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
-    # url(r'^admin/', include(admin.site.urls)),
-    url('^phone/', include('phonehome.urls'))
+    url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'^social/', include(social_auth_urls)),
+    url(r'^phone/', include('phonehome.urls')),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^accounts/', include('hundredseconds.accounts.urls', namespace='accounts'))
 )

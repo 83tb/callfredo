@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib.auth.backends import ModelBackend
 
 
-class DrunkUserModelBackend(ModelBackend):
+class UserModelBackend(ModelBackend):
 
     def authenticate(self, username=None, password=None):
         try:

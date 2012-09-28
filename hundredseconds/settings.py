@@ -97,9 +97,7 @@ ROOT_URLCONF = 'hundredseconds.urls'
 WSGI_APPLICATION = 'hundredseconds.wsgi.application'
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(SITE_ROOT, './templates'),
 )
 
 INSTALLED_APPS = (
@@ -152,29 +150,21 @@ SOCIAL_AUTH_USER_MODEL = CUSTOM_USER_MODEL
 
 AUTHENTICATION_BACKENDS = (
     'social_auth.backends.facebook.FacebookBackend',
-    'alcomap.accounts.backends.DrunkUserModelBackend',
+    'hundredseconds.accounts.backends.UserModelBackend',
 )
 
 SOCIAL_AUTH_ENABLED_BACKENDS = ('facebook',)
 
-SOCIAL_AUTH_PIPELINE = (
-    'social_auth.backends.pipeline.social.social_auth_user',
-    'social_auth.backends.pipeline.associate.associate_by_email',
-    'alcomap.accounts.social.pipeline.get_username',
-    'social_auth.backends.pipeline.user.create_user',
-    'social_auth.backends.pipeline.social.associate_user',
-    'social_auth.backends.pipeline.social.load_extra_data',
-    'social_auth.backends.pipeline.user.update_user_details',
-)
-
 LOGIN_REDIRECT_URL = '/'
-SOCIAL_AUTH_NEW_USER_REDIRECT_URL = '/accounts/profile/'
-SOCIAL_AUTH_NEW_ASSOCIATION_REDIRECT_URL = '/accounts/profile/'
+SOCIAL_AUTH_NEW_USER_REDIRECT_URL = '/'
+SOCIAL_AUTH_NEW_ASSOCIATION_REDIRECT_URL = '/'
 SOCIAL_AUTH_BACKEND_ERROR_URL = '/accounts/social-error/'
 
 # Facebook perms
 FACEBOOK_EXTENDED_PERMISSIONS = []
 
+FACEBOOK_APP_ID = '420588444667164'
+FACEBOOK_API_SECRET = '953cac899ca6f17b400191cd071e3b66'
 
 # Twilio
 ACCOUNT_SID = 'ACd9069181b7ebff5c6fe8d62d6ee8b15e' 
