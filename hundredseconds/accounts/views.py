@@ -24,4 +24,4 @@ class PhoneUpdateView(UpdateView):
 
 def birthdays(request):
     data = get_firends_birthdays(request.user)
-    return HttpResponse(data)
+    return HttpResponse(data.text)
