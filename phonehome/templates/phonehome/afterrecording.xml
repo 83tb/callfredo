@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+  <Say>Ok, time is up, wishes posted! And now the best part: fun fact of the day! Did you know that In Poland the name day is considered more important than the birthday? LOL. And at the end: your daily quote from the social network: Drop the the. Just Facebook. It's cleaner. Ok, so that's it! Have a nice day {{ user.get_full_name }}!</Say>
+</Response>

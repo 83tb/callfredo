@@ -46,12 +46,8 @@ def recording(request):
         try:
             user = User.objects.get(phone=number)
             # TODO: Post to Facebook here
-
-
-
-
         except User.DoesNotExist:
-            pass
-
+            user = None
     
-    return HttpResponse('OK')
+    return direct_to_template('phonehome/afterrecording.xml',
+                              extra_context={'user': user})

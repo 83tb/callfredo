@@ -2,8 +2,6 @@
 <Response>
   <Say>Hi {{ user.get_full_name }}, what a nice weather today in Warsaw! This is your daily morning show so let's see what happened on your Facebook lately. Well, it looks like you have {{ json_data.unread }} unread messages from your friends, so be sure to check that out later! Also, remember that you're going to {% for event in json_data.events %}{{ event }} {% if not forloop.last %}and{% endif %}{% endfor %} today. Time for birthdays! Your friend {{ bday }} has birthday today. We're thinking you may want to wish your friend all best, so just start talking after a beep and we'll post your wishes on his wall.</Say>
 
-  <Record playBeep="true" maxLength="20" action="http://desolate-escarpment-8965.herokuapp.com/phone/recording/" method="POST" />
-
-  <Say>Ok, time is up, wishes posted! And now the best part: fun fact of the day! Did you know that In Poland the name day is considered more important than the birthday? LOL. And at the end: your daily quote from the social network: Drop the the. Just Facebook. It's cleaner. Ok, so that's it! Have a nice day {{ user.get_full_name }}!</Say>
+  <Record playBeep="true" maxLength="10" action="http://desolate-escarpment-8965.herokuapp.com/phone/recording/" method="POST" />
 </Response>
 
