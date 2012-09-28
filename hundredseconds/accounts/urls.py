@@ -4,4 +4,6 @@ from hundredseconds.accounts import views
 urlpatterns = patterns('',
     url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name='logout'),
     url(r'^social-error/$', views.SocialErrorView.as_view()),
+
+    url(r'^phone/$', views.PhoneUpdateView.as_view(), name='phone'),
 )
