@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-bdays = u"""
-
-{
+"""
+bdays = {
   "data": [
     {
       "id": "6907955"
@@ -1805,7 +1804,7 @@ bdays = u"""
       "id": "100002614281798"
     },
     {
-      "birthday": "06/12/1980",
+      "birthday": "09/28/1980",
       "id": "100002671047583"
     },
     {
@@ -1842,12 +1841,7 @@ bdays = u"""
     "next": "https://graph.facebook.com/1225871981/friends?fields=birthday&limit=5000&offset=5000"
   }
 }
-
-"""
-
-inbox = u"""
-
-{
+inbox = {
   "data": [
     {
       "unread": 0,
@@ -1982,12 +1976,8 @@ inbox = u"""
   }
 }
 
-"""
 
-
-events = u"""
-
-{
+events = {
   "data": [
     {
       "name": "Rails Girls Warsaw middle – party",
@@ -2029,9 +2019,7 @@ events = u"""
     "next": "https://graph.facebook.com/1225871981/events?limit=25&until=1348254000"
   }
 }
-
 """
-
 
 import datetime
 
@@ -2053,29 +2041,18 @@ def get_unread_count(inbox):
 
 
 def get_today_bdays(bdays):
-    bdays = eval(bdays)
+    bdays = eval(str(bdays))
+    today_birthdays = []
     for bday in bdays['data']:
-        print bday
-
-
         try:
-
-
-
-            if bday['birthday']>str(datetime.datetime.today()) and bday['birthday']<str(datetime.datetime.today()+datetime.timedelta(1)):
-                print bday['birthday']
-                print datetime.datetime.today()
-                #print datetime.datetime.strptime(bday['birthday'], "%d/%m/%Y").strftime("%Y-%m-%d")
-
+            if str(datetime.datetime.strptime(bday['birthday'], "%m/%d/%Y").strftime("%Y-%m-%d"))[5:]==str(datetime.date.today())[5:]:
+                today_birthdays.append(bday)
         except:
             pass
+
+    return today_birthdays
 
 
 print get_only_today_events(events)
 print get_unread_count(inbox)
-
 print get_today_bdays(bdays)
-
-
-
-
