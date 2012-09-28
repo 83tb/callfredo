@@ -11,7 +11,7 @@
     {% if user.phone %}
     <br><br>
     <div class="intro">
-        <p><a href="#">Click here</a> to get you daily show! The server will call on you phone!</p>
+        <p><a href="{% url call user.phone %}">Click here</a> to get you daily show! The server will call on you phone!</p>
     </div>
     {% endif %}
 {% endblock content %}
