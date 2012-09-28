@@ -5,11 +5,7 @@ env
 .project
 .pydevproject
 .settings
+.idea/*
 sqlite.db
 localsettings.py
-
 *.iml
-
-*.iml
-
-*.xml
