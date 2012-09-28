@@ -1,6 +1,6 @@
 from django.views.generic.base import TemplateView
 from django.shortcuts import render_to_response
-from accounts.models import  import User
+from accounts.models import User
 
 
 class IndexView(TemplateView):
