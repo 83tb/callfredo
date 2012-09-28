@@ -34,6 +34,7 @@ def call(request, number):
 @csrf_exempt
 def recording(request):
     # Called by Twilio when recording is finished
+    user = None
     if request.method == 'POST':
         Recording.objects.create(call_sid=request.POST.get('CallSid'),
                                  caller=request.POST.get('From'),

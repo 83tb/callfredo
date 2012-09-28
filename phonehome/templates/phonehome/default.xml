@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
-  <Say>Hi {{ user.get_full_name }}, what a nice weather today in Warsaw! This is your daily morning show so let's see what happened on your Facebook lately. Well, it looks like you have {{ json_data.unread }} unread messages from your friends, so be sure to check that out later! Also, remember that you're going to {% for event in json_data.events %}{{ event }} {% if not forloop.last %}and{% endif %}{% endfor %} today. Time for birthdays! Your friend {{ bday }} has birthday today. We're thinking you may want to wish your friend all best, so just start talking after a beep and we'll post your wishes on his wall.</Say>
+  <Say>Hi Chris, what a nice weather today in Warsaw! This is your daily morning show so let's look what happen on your Facebook lately. Remember that you're going to the crazy Facebook World Hack Warsaw after party today! Also, don't forgot that your friend Ola has birthday today. We're thinking you may want to wish her all best, so just start talking after a beep and we'll post your wishes on his wall.</Say>
 
   <Record playBeep="true" maxLength="10" action="http://desolate-escarpment-8965.herokuapp.com/phone/recording/" method="POST" />
 </Response>
