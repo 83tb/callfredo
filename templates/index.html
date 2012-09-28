@@ -5,9 +5,12 @@ Hi!
 {% endblock %}
 
 {% block content %}
+
 {% if user.is_authenticated %}
-You are logged in as {{ user.username }}!
+You are logged in as {{ user.username }}!<br>
+<a href="{% url accounts:logout %}">Logout</a>
 {% else %}
 <a href="{% url socialauth_begin 'facebook' %}">Login with Facebook</a>
 {% endif %}
+
 {% endblock %}
