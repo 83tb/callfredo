@@ -44,7 +44,7 @@ def get_graph_data(user, path, data=None):
     r = requests.get(url, data=data)
     return r
 
-def get_firends_birthdays(user):
+def get_friends_birthdays(user):
     return get_graph_data(user, 'friends', {'fields': 'birthday'})
 
 def get_inbox(user):

@@ -1,7 +1,7 @@
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import UpdateView
 from hundredseconds.accounts.forms import UserPhoneForm
-from hundredseconds.accounts.backends import get_firends_birthdays
+from hundredseconds.accounts.backends import get_friends_birthdays
 from django.http import HttpResponseRedirect, HttpResponse
 
 TEMPLATES_DIR = 'accounts/'
@@ -23,5 +23,5 @@ class PhoneUpdateView(UpdateView):
 
 
 def birthdays(request):
-    data = get_firends_birthdays(request.user)
+    data = get_friends_birthdays(request.user)
     return HttpResponse(data.text)
