@@ -1,4 +1,3 @@
-import datetime
 from twilio.rest import TwilioRestClient
 
 from django.views.decorators.csrf import csrf_exempt
