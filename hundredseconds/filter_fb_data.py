@@ -2036,7 +2036,7 @@ def get_only_today_events(events):
 
 def get_unread_count(inbox):
     inb = eval(inbox)
-    return inb['summary']['unread_count']
+    return inb['unread_count']
 
 
 
