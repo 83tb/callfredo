@@ -17,11 +17,12 @@ def call(request, number):
     client = TwilioRestClient(settings.ACCOUNT_SID, settings.AUTH_TOKEN)
     call = client.calls.create(to=number, from_=settings.OUTGOING_NUMBER,
                                url='http://desolate-escarpment-8965.herokuapp.com/phone/')
+    
     return HttpResponse(call.sid)
 
 
 @csrf_exempt
-def recording(request, number):
+def recording(request):
     # Called by Twilio when recording is finished
     if request.method == 'POST':
         Recording.objects.create(call_sid=request.POST.get('CallSid'),
