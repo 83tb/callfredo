@@ -33,7 +33,10 @@ class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
 
     def call(self, obj):
-        return '<a href="%s">Call</a>' % reverse('call', kwargs={'number': obj.phone})
+        if obj.phone:
+            return '<a href="%s">Call</a>' % reverse('call', kwargs={'number': obj.phone})
+        else:
+            return '--'
     call.allow_tags = True
     call.short_description = 'Call'
 
