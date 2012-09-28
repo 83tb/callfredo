@@ -173,6 +173,6 @@ AUTH_TOKEN = '4e0d3996074d07b5d9a42be566e4161f'
 
 
 try:
-    import localsettings
+    from localsettings import *
 except ImportError:
     pass

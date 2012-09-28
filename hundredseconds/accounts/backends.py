@@ -1,5 +1,8 @@
 from django.conf import settings
 from django.contrib.auth.backends import ModelBackend
+from django.db.models import Q
+from django.db.models.loading import get_model
+from django.core.exceptions import ImproperlyConfigured
 
 
 class UserModelBackend(ModelBackend):
