@@ -34,6 +34,7 @@ def call(request, number):
 @csrf_exempt
 def recording(request):
     # Called by Twilio when recording is finished
+    user = None
     if request.method == 'POST':
         Recording.objects.create(call_sid=request.POST.get('CallSid'),
                                  caller=request.POST.get('From'),
@@ -46,12 +47,8 @@ def recording(request):
         try:
             user = User.objects.get(phone=number)
             # TODO: Post to Facebook here
-
-
-
-
         except User.DoesNotExist:
-            pass
-
+            user = None
     
-    return HttpResponse('OK')
+    return direct_to_template(request, template='phonehome/afterrecording.xml',
+                              extra_context={'user': user})
