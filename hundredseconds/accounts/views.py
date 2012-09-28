@@ -27,4 +27,4 @@ def birthdays(request):
     '''user = request.user
     social_user = user.social_auth.get(provider='facebook')
     at = social_user.extra_data.get('access_token'), '''
-    return HttpResponse(data)
+    return HttpResponse(str(data))
