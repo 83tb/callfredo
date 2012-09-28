@@ -1,5 +1,5 @@
 from django.views.generic.base import TemplateView
-
+from django.shortcuts import render_to_response
 
 class IndexView(TemplateView):
     template_name = 'index.html'
