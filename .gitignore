@@ -2,7 +2,8 @@
 *.log
 *.pot
 *.pyc
-local_settings.py
 .project
 .pydevproject
 .settings
+sqlite.db
+localsettings.py

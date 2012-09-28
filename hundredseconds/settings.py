@@ -1,4 +1,7 @@
+import os
 import dj_database_url
+
+SITE_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -107,10 +110,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'phonehome',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+    'django.contrib.admin',
+    'south',
+    'social_auth',
+    'hundredseconds.accounts',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -141,6 +144,37 @@ LOGGING = {
         },
     }
 }
+
+
+# Auth settings
+CUSTOM_USER_MODEL = 'accounts.User'
+SOCIAL_AUTH_USER_MODEL = CUSTOM_USER_MODEL
+
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.facebook.FacebookBackend',
+    'alcomap.accounts.backends.DrunkUserModelBackend',
+)
+
+SOCIAL_AUTH_ENABLED_BACKENDS = ('facebook',)
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_auth.backends.pipeline.social.social_auth_user',
+    'social_auth.backends.pipeline.associate.associate_by_email',
+    'alcomap.accounts.social.pipeline.get_username',
+    'social_auth.backends.pipeline.user.create_user',
+    'social_auth.backends.pipeline.social.associate_user',
+    'social_auth.backends.pipeline.social.load_extra_data',
+    'social_auth.backends.pipeline.user.update_user_details',
+)
+
+LOGIN_REDIRECT_URL = '/'
+SOCIAL_AUTH_NEW_USER_REDIRECT_URL = '/accounts/profile/'
+SOCIAL_AUTH_NEW_ASSOCIATION_REDIRECT_URL = '/accounts/profile/'
+SOCIAL_AUTH_BACKEND_ERROR_URL = '/accounts/social-error/'
+
+# Facebook perms
+FACEBOOK_EXTENDED_PERMISSIONS = []
+
 
 try:
     import localsettings
