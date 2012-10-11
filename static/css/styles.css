@@ -2,3 +2,38 @@
 @import url("nivo-slider.css");
 @import url("prettyphoto.css");
 @import url("layout.css");
+
+
+
+html {
+    background: url("/static/img/bgbirth.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
+@font-face {
+    font-family: Adelle;
+    src: url('/static/fonts/AdelleBasic_Bold.otf');
+}
+
+
+p {
+    font-family: “Helvetica Neue Light”, “HelveticaNeue-Light”, Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: white;
+    text-shadow: 1px 1px 3px #323232;
+
+}
+
+
+
+.content {
+    width:700px;
+    margin:0px auto;
+    text-align:center;
+    padding:15px;
+
+}

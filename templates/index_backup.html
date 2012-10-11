@@ -1,0 +1,217 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>100seconds - YOUR daily morning show!</title>
+    <link href="{{ STATIC_URL }}css/bootstrap-responsive.min.css" rel="stylesheet">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js" /></script>
+
+<meta name="description" content="">
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+<!-- Load main style sheet -->
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/styles.css">
+
+<!-- Default stylesheets for the slider -->
+<link rel="stylesheet" href="{{ STATIC_URL }}nivo-slider/themes/default/default.css" type="text/css" media="screen" />
+
+<!-- Load Javascript and Jquery -->
+<script src="{{ STATIC_URL }}js/jquery.js"></script>
+<script src="{{ STATIC_URL }}js/jquery.nivo.slider.js"></script>
+<script src="{{ STATIC_URL }}js/jquery.prettyPhoto.js"></script>
+<script src="{{ STATIC_URL }}js/jquery.validate.js"></script>
+<script src="{{ STATIC_URL }}js/filter-gallery.js"></script>
+<script src="{{ STATIC_URL }}js/smooth-scroll.js"></script>
+
+<!-- Nivo Slider -->
+    <script type="text/javascript">
+    $(window).load(function() {
+        $('#slider').nivoSlider();
+    });
+    </script>
+
+<!-- PrettyPhoto Jquery Gallery -->
+    <script type="text/javascript">
+  $(document).ready(function(){
+    $("a[rel^='prettyPhoto']").prettyPhoto();
+  });
+</script>
+
+<!-- Jquery Form Validation -->
+<script type="text/javascript">
+    $(document).ready(function() {
+      $("#commentForm").validate();
+});
+</script>
+
+{% block extrahead %}{% endblock %}
+</head>
+
+<body>
+    <div id="top"></div>
+    <div id="container">
+
+  <div id="feature">
+    <div class="inner" style="text-align: center;">
+        <h2 style="font-size: 72px; margin: 30px 0 0 20px;">100seconds</h2>
+        <div class="intro">
+            <h1 class="omega">We deliver YOUR Daily Show</h1>
+            <p>Get a daily recap of what happened on your facebook, right to your phone.</p>
+
+        </div><!-- end intro -->
+      <!-- end inner -->
+  </div><!-- end feature -->
+
+ {% block content %}
+
+  <div id="display">
+    <div class="inner">
+         <div class="slider-wrapper theme-default">
+            <div id="slider" class="nivoSlider">
+                <img src="{{ STATIC_URL }}nivo-slider/images/slide.png" alt="Happiness" width="680" height="383" />
+                <img src="{{ STATIC_URL }}nivo-slider/images/slide2.png" alt="Happiness" width="680" height="383" />
+                <img src="{{ STATIC_URL }}nivo-slider/images/slide3.png" alt="Happiness" width="680" height="383" />
+            </div><!-- end slider -->
+                    </div><!-- end slider -->
+              </div><!-- end slider wrapper -->  
+     </div> <!-- end inner -->
+  </div><!-- end slider -->
+
+    <div class="inner" style="text-align: center; margin: 50px auto 20px;">
+        <p><a href="{% url socialauth_begin 'facebook' %}"><img src="{{ STATIC_URL }}img/signup_button.png" /></a></p>
+    </div>
+
+  <div id="about">
+    <div id="about-link">&nbsp;</div>
+    <div class="inner">
+            <h1>How we hacked it together?</h1>
+        <ul class="features">
+            <li style="margin-left:130px;">
+                <img src="{{ STATIC_URL }}img/icons/facebook.png" width="182" height="182" alt="Features" />
+                <h2>Facebook</h2>
+                <p>We connect with your Open Graph to get the latest news from your social life and deliver the most important ones to your show.</p>
+            </li>
+
+            <li>
+                <img src="{{ STATIC_URL }}img/icons/soundcloud.png" width="182" height="182" alt="Features" />
+                <h2>SoundCloud</h2>
+                <p>Record personalized birthday wishes and we'll post them to your friend's timeline. Dead simple.</p>
+            </li>
+
+            <li>
+                <img src="{{ STATIC_URL }}img/icons/twilio.png" width="182" height="182" alt="Features" />
+                <h2>Twilio</h2>
+                <p>We called you on your mobile phone, no matter where you are and what you do: you can run, drive or commute. </p>
+            </li>
+        </ul>
+        <div class="divide"><img src="{{ STATIC_URL }}img/big-plus.png" width="" height="" alt="Divider" /></div>
+        <div class="big-text">
+            Complex algorithms <br />and stuff
+        </div><!-- end bog-text -->
+
+        <div class="extra-feature cf">
+            <ul class="extra-features">
+                <li>
+                    <img src="{{ STATIC_URL }}img/gears.png" width="62" height="62" alt="extra-features" />
+                    <p>We select the smartest Tibetan lamas to choose the most important stuff from your Facebook. We won't make your bored.</p>
+                </li>
+
+                <li>
+                    <img src="{{ STATIC_URL }}img/heart.png" width="62" height="62" alt="extra-features" />
+                    <p>We help you stay in touch. In a personal way. We'll remind you about your friends birthdays and deliver wishes you record during the call.</p>
+                </li>
+
+                <li class="last">
+                    <img src="{{ STATIC_URL }}img/clap.png" width="62" height="62" alt="extra-features" />
+                    <p>Customize your daily show and listen only to things that matter to YOU. Remove any part of it that you don't like. </p>
+                </li>
+            </ul>
+        </div><!-- end extra-features -->
+      </div><!-- end inner -->
+  </div><!-- end about -->
+  <div class="splitter"></div>
+
+  <div id="projects">
+    <div class="inner">
+<div id="projects-link">&nbsp;</div>
+        <h1>How people use it.</span></h1>
+
+         <ul id="portfolio">
+                    <li class="service photography"><div class="type-image"></div>
+                    <img src="{{ STATIC_URL }}img/icons/driving.png" alt="Preview" height="198" width="230" /><p>Driving a car</p></li>
+
+                    <li class="photography development"><div class="type-image"></div>
+                    <img src="{{ STATIC_URL }}img/icons/running.png" alt="Preview" height="198" width="230" /></a><p>Running</p></li>
+
+                    <li class="design development"><div class="type-image"></div>
+                    <img src="{{ STATIC_URL }}img/icons/blind.png" alt="Preview" height="198" width="230" /></a><p>Blind people</p></li>
+
+                    <li class="development photography last"><div class="type-image"></div>
+                    <img src="{{ STATIC_URL }}img/icons/eldery.png" alt="Preview" height="198" width="230" /></a><p>Elderly people</p></li>
+
+              </ul>
+      </div><!-- end inner -->
+  </div><!-- end projects -->
+<div class="splitter"></div>
+ <div id="team">
+<div id="team-link">&nbsp;</div>
+    <div class="inner cf">
+        <h1>Meet the hackers</h1>
+        <ul id="team-members">
+            <li>
+                <img src="{{ STATIC_URL }}img/team/ksiezniczek.png" width="182" height="182" alt="Team Member" />
+                <h3>Ola Sitarska<br />
+                    <span>THE Princess</span>
+                </h3>
+
+            </li>
+
+            <li>
+                <img src="{{ STATIC_URL }}img/team/KubaK.png" width="182" height="182" alt="Team Member" />
+                <h3>Kuba Kucharski<br />
+                    <span>Master Hacker</span>
+                </h3>
+
+            </li>
+
+            <li>
+                <img src="{{ STATIC_URL }}img/team/Lewy.png" width="182" height="182" alt="Team Member" />
+                <h3>Przemek Lewandowski<br />
+                    <span>Dev Ops</span>
+                </h3>
+
+            </li>
+
+            <li class="last">
+                <img src="{{ STATIC_URL }}img/team/MarekS.png" width="182" height="182" alt="Team Member" />
+                <h3>Marek Stępniowski<br />
+                    <span>Head llama</span>
+                </h3>
+
+            </li>
+            <li>
+                <img src="{{ STATIC_URL }}img/team/CHris.png" width="182" height="182" alt="Team Member" />
+                <h3>Chris Wacławek<br />
+                    <span>Hustler</span>
+                </h3>
+
+            </li>
+            <li>
+                <img src="{{ STATIC_URL }}img/team/Seba.png" width="182" height="182" alt="Team Member" />
+                <h3>Sebastian Siennicki<br />
+                    <span>Breaker</span>
+                </h3>
+
+            </li>
+        </ul>
+
+  </div><!-- end team -->
+<div class="splitter"></div>
+
+     {% endblock content %}
+
+</div>
+<a href="#top"><div id="up"></div></a>
+</body>
+</html>

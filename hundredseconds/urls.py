@@ -9,6 +9,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'^givenumber/$', views.GiveNumberView.as_view(), name='givenumber'),
+
     url(r'^social/', include(social_auth_urls)),
     url(r'^phone/', include('phonehome.urls')),
     url(r'^player/', views.PlayerView),
