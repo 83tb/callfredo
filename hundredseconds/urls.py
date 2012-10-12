@@ -10,6 +10,13 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^$', views.IndexView.as_view(), name='index'),
     url(r'^givenumber/$', views.GiveNumberView.as_view(), name='givenumber'),
+    url(r'^confirmnumber/$', views.ConfirmNumberView.as_view(), name='confirmnumber'),
+    url(r'^schedule/$', views.ScheduleView.as_view(), name='schedule'),
+    url(r'^saveincontacts/$', views.SaveInContactsView.as_view(), name='saveincontacts'),
+    url(r'^tryit/$', views.TryItView.as_view(), name='tryit'),
+
+
+
 
     url(r'^social/', include(social_auth_urls)),
     url(r'^phone/', include('phonehome.urls')),

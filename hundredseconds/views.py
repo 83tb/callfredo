@@ -12,6 +12,19 @@ class GiveNumberView(TemplateView):
 
 
 
+class ConfirmNumberView(TemplateView):
+    template_name = 'confirmnumber.html'
+
+class ScheduleView(TemplateView):
+    template_name = 'schedule.html'
+
+class SaveInContactsView(TemplateView):
+    template_name = 'saveincontacts.html'
+
+class TryItView(TemplateView):
+    template_name = 'tryit.html'
+
+
 
 def PlayerView(request):
 
