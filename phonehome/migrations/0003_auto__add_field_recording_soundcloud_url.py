@@ -10,7 +10,7 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         # Adding field 'Recording.soundcloud_url'
         db.add_column('phonehome_recording', 'soundcloud_url',
-                      self.gf('django.db.models.fields.CharField')(default=None, max_length=240),
+                      self.gf('django.db.models.fields.CharField')(default=None, max_length=240, null=True, blank=True),
                       keep_default=False)
 
 
@@ -75,7 +75,7 @@ class Migration(SchemaMigration):
             'duration': ('django.db.models.fields.IntegerField', [], {}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'recipient': ('django.db.models.fields.CharField', [], {'max_length': '240'}),
-            'soundcloud_url': ('django.db.models.fields.CharField', [], {'default': 'None', 'max_length': '240'}),
+            'soundcloud_url': ('django.db.models.fields.CharField', [], {'default': 'None', 'max_length': '240', 'null': 'True', 'blank': 'True'}),
             'url': ('django.db.models.fields.CharField', [], {'max_length': '240'})
         }
     }
