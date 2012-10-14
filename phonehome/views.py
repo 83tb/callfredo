@@ -53,7 +53,7 @@ def recording(request):
                                  recipient=request.POST.get('To'),
                                  duration=int(request.POST.get('RecordingDuration')),
                                  url=request.POST.get('RecordingUrl'),
-                                 soundcloud_url(track.permalink_url))
+                                 soundcloud_url=track.permalink_url)
 
         number = request.POST.get('To')[1:] # Remove leading '+'
         try:
