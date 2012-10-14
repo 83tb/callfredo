@@ -37,10 +37,10 @@ def call(request, number):
 def recording(request):
     # Called by Twilio when recording is finished
     user = None
-    if request.method == 'POST':
+    if request.method == 'GET':
         #Uploading to SoundCloud
         client = soundcloud.Client(client_id=settings.SOUNDCLOUD_CLIENT_ID, client_secret=settings.SOUNDCLOUD_CLIENT_SECRET, username=settings.SOUNDCLOUD_USERNAME, password=settings.SOUNDCLOUD_PASSWORD)
-        (filename, headers) = urllib.urlretrieve(request.POST.get('RecordingUrl')+".mp3")
+        (filename, headers) = urllib.urlretrieve(request.GET.get('RecordingUrl')+".mp3")
 
         track = client.post('/tracks', track={
             'title': 'Your birthday wishes!',
