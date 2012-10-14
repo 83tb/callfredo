@@ -1,11 +1,11 @@
-100seconds
-==========
+callfredo
+=========
 
 Quick start
 -----------
 
 <pre>
-cd 100seconds
+cd callfredo
 virtualenv --distribute --no-site-packages env
 source env/bin/activate
 pip install -r requirements.txt

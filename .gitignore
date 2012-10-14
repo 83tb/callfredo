@@ -10,3 +10,5 @@ sqlite.db
 localsettings.py
 *.iml
 .idea/
+src/facebook
+src/pip-delete-this-directory.txt

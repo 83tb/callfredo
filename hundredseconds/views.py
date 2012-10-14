@@ -7,6 +7,24 @@ from hundredseconds.accounts.forms import UserPhoneForm
 class IndexView(TemplateView):
     template_name = 'index.html'
 
+class GiveNumberView(TemplateView):
+    template_name = 'givenumber.html'
+
+
+
+class ConfirmNumberView(TemplateView):
+    template_name = 'confirmnumber.html'
+
+class ScheduleView(TemplateView):
+    template_name = 'schedule.html'
+
+class SaveInContactsView(TemplateView):
+    template_name = 'saveincontacts.html'
+
+class TryItView(TemplateView):
+    template_name = 'tryit.html'
+
+
 
 def PlayerView(request):
 
