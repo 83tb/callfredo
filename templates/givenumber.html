@@ -37,29 +37,24 @@
 </head>
 
 <body>
-<div id="top"></div>
-<div id="container">
-
-
-
-
-    <div style="margin-top: 100px;" class="content">
-        <IMG SRC="/static/img/logo.png">
-
-        <BR><BR><BR>
-
-        <P>OK! Give Fredo your phone number:</P>
-        <BR><BR><BR>
-        <INPUT style="background-color: black; opacity:0.4; filter:alpha(opacity=40);" type="text"></INPUT>
-<BR><BR><BR>
-        <IMG SRC="/static/img/next.png">
-
-
-    </div>
-
-
-</div>
-
-
+    <div id="top"></div>
+	<div id="container">
+	    <div style="margin-top: 100px;" class="content">
+	        <img src="{{ STATIC_URL }}img/logo.png">
+	
+	        <br><br><br>
+	        <p>OK! Give Fredo your phone number:</p>
+	        <br><br><br>
+	        
+	        <form action="" method="post">{% csrf_token %}
+	            {{ form.phone }}
+	            {{ form.phone.errors }}
+	            <br><br>
+	            <p>for example: 48666999333 (yes without plus sign) </p>
+	            <br><br><br>
+	            <input type="image" src="{{ STATIC_URL }}img/next.png">
+	        </form>
+	    </div>
+	</div>
 </body>
 </html>

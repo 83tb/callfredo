@@ -28,7 +28,11 @@ p {
 
 }
 
-
+input.text {
+    background-color: black;
+    opacity:0.4;
+    filter:alpha(opacity=40);
+}
 
 .content {
     width:700px;

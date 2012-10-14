@@ -56,14 +56,14 @@
 
 
    <div style="margin-top: 100px;" class="content">
-       <IMG SRC="/static/img/logo.png">
+       <IMG SRC="{{ STATIC_URL }}img/logo.png">
   <P style="font-size: 2em; margin-top: 10px;">Birthday wishes meaningful again.</P>
        <BR><BR><BR>
 
     <P>Call Fredo anytime you want to wish your friends happy birthday. <BR>Record wishes and let Fredo post them on your friend's facebook wall for you.
     <BR>Make it matter.</P>
         <BR><BR><BR>
-       <IMG SRC="/static/img/facebooklogin.png">
+       <a href="{% url socialauth_begin 'facebook' %}"><IMG SRC="{{ STATIC_URL }}img/facebooklogin.png"></a>
 
    </div>
 

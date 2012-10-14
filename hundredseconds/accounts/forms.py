@@ -7,9 +7,14 @@ from hundredseconds.accounts.models import User
 
 
 class UserPhoneForm(forms.ModelForm):
+
     class Meta:
         model = User
         fields = ('phone',)
+
+    def __init__(self, *args, **kwargs):
+        super(UserPhoneForm, self).__init__(*args, **kwargs)
+        self.fields['phone'].widget.attrs['class'] = 'text'
 
     def clean_phone(self):
         if not re.match(r'[0-9]+', self.cleaned_data['phone']):

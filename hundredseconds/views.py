@@ -1,15 +1,26 @@
-from django.views.generic.base import TemplateView
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
-from accounts.models import User
+from django.views.generic import TemplateView, UpdateView
+from hundredseconds.accounts.models import User
 from hundredseconds.accounts.forms import UserPhoneForm
 
 
 class IndexView(TemplateView):
     template_name = 'index.html'
 
-class GiveNumberView(TemplateView):
+
+class GiveNumberView(UpdateView):
+    form_class = UserPhoneForm
     template_name = 'givenumber.html'
 
+    def get_object(self):
+        return self.request.user
+
+    def form_valid(self, form):
+        super(GiveNumberView, self).form_valid(form)
+        url = reverse('schedule')
+        return HttpResponseRedirect(url)
 
 
 class ConfirmNumberView(TemplateView):
@@ -49,7 +60,7 @@ def getData(events, bdays, inbox):
         }
 
 
-    Call.create(fetched_date=now, data=str(data), user=User.objects.filter(id=1))
+    Call.objects.create(fetched_date=now, data=str(data), user=User.objects.filter(id=1))
 
     return data
 
