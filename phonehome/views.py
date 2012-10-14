@@ -41,11 +41,11 @@ def recording(request):
         #Uploading to SoundCloud
         client = soundcloud.Client(client_id=settings.SOUNDCLOUD_CLIENT_ID, client_secret=settings.SOUNDCLOUD_CLIENT_SECRET, username=settings.SOUNDCLOUD_USERNAME, password=settings.SOUNDCLOUD_PASSWORD)
         (filename, headers) = urllib.urlretrieve(request.GET.get('RecordingUrl')+".mp3")
-
+        file = open(filename, 'rb')
         track = client.post('/tracks', track={
             'title': 'Your birthday wishes!',
             'description': 'Click here to hear birthday wishes recorded for you :)',
-            'asset_data': open(filename, 'rb')
+            'asset_data': file,
         })
 
         Recording.objects.create(call_sid=request.POST.get('CallSid'),
