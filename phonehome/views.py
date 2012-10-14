@@ -1,4 +1,4 @@
-from facebook import GraphAPI, GraphAPIError
+from facebook import GraphAPI, GraphAPIError #@UnresolvedImport
 from twilio.rest import TwilioRestClient
 import soundcloud, urllib
 

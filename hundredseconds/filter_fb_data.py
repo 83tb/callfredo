@@ -2020,34 +2020,3 @@ events = {
   }
 }
 """
-
-import datetime
-
-def get_only_today_events(events):
-    evd = eval(events)
-
-    todays_events = []
-    for ev in evd['data']:
-        if ev['start_time']>str(datetime.datetime.now()) and ev['start_time']<str(datetime.datetime.now()+datetime.timedelta(1)):
-            todays_events.append(ev)
-
-    return todays_events
-
-
-def get_unread_count(inbox):
-    inb = eval(inbox)
-    return inb['unread_count']
-
-
-
-def get_today_bdays(bdays):
-    bdays = eval(str(bdays))
-    today_birthdays = []
-    for bday in bdays['data']:
-        try:
-            if str(datetime.datetime.strptime(bday['birthday'], "%m/%d/%Y").strftime("%Y-%m-%d"))[5:]==str(datetime.date.today())[5:]:
-                today_birthdays.append(bday)
-        except:
-            pass
-
-    return today_birthdays

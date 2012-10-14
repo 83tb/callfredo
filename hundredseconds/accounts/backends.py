@@ -1,13 +1,10 @@
+import datetime
 from django.conf import settings
 from django.contrib.auth.backends import ModelBackend
 from django.db.models import Q
 from django.db.models.loading import get_model
 from django.core.exceptions import ImproperlyConfigured
-import requests
-
-
-FACEBOOK_GRAPH_URL = 'https://graph.facebook.com/'
-FACEBOOK_ME = 'https://graph.facebook.com/me/'
+from facebook import GraphAPI, GraphAPIError #@UnresolvedImport
 
 
 class UserModelBackend(ModelBackend):
@@ -35,21 +32,48 @@ class UserModelBackend(ModelBackend):
         return self._user_class
 
 def get_graph_data(user, path, data=None):
-    social_user = user.social_auth.get(provider='facebook')
     data = data or {}
-    data.update({
-        'access_token': social_user.extra_data.get('access_token'),
-    })
-    url = FACEBOOK_ME + path
-    r = requests.get(url, params=data)
+    try:
+        api = GraphAPI(user.access_token)
+        r = api.get_connections('me', path, **data)
+    except GraphAPIError:
+        pass
     return r
+
 
 def get_friends_birthdays(user):
     return get_graph_data(user, 'friends', {'fields': 'birthday'})
 
+
 def get_inbox(user):
-    return get_graph_data(user, 'inbox ', {'fields': 'from,unread'})
+    return get_graph_data(user, 'inbox', {'fields': 'from,unread'})
+
 
 def get_events(user):
-    return get_graph_data(user, 'events ', {})
+    return get_graph_data(user, 'events', {})
 
+
+def get_only_today_events(events):
+    todays_events = []
+    for ev in events['data']:
+        if ev['start_time'] > str(datetime.datetime.now()) and ev['start_time'] < str(datetime.datetime.now() + datetime.timedelta(1)):
+            todays_events.append(ev)
+
+    return todays_events
+
+
+def get_unread_count(inbox):
+    print(inbox)
+    return 0
+
+
+def get_today_bdays(bdays):
+    today_birthdays = []
+    for bday in bdays['data']:
+        try:
+            if str(datetime.datetime.strptime(bday['birthday'], "%m/%d/%Y").strftime("%Y-%m-%d"))[5:] == str(datetime.date.today())[5:]:
+                today_birthdays.append(bday)
+        except:
+            pass
+
+    return today_birthdays

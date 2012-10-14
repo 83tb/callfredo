@@ -9,8 +9,6 @@ class Call(models.Model):
     fetched_date = models.DateTimeField(auto_now_add=True)
 
 
-
-
 class Recording(models.Model):
     call_sid = models.CharField(max_length=240)
     caller = models.CharField(max_length=240)
@@ -18,5 +16,4 @@ class Recording(models.Model):
     duration = models.IntegerField()
     url = models.CharField(max_length=240)
     soundcloud_url = models.CharField(max_length=240, default=None, null=True, blank=True)
-
 

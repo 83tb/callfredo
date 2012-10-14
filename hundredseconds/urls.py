@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     url(r'^saveincontacts/$', views.SaveInContactsView.as_view(), name='saveincontacts'),
     url(r'^tryit/$', views.TryItView.as_view(), name='tryit'),
 
+    url(r'^birthdays/$', login_required(views.birthdays), name='birthdays'),
 
     url(r'^social/', include(social_auth_urls)),
     url(r'^phone/', include('phonehome.urls')),
