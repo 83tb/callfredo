@@ -17,7 +17,7 @@ def phone(request, number):
     calls = Call.objects.filter(user=user).order_by('-fetched_date')[:1]
     if calls:
         json_data = calls[0].data
-        jubilat = calls[0].data['bdays']['id']
+        jubilat = calls[0].data['bdays'][0]['id']
     else:
         json_data = {}
 
