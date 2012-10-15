@@ -39,8 +39,12 @@ def TryItView(request):
 
 
 def PlayerView(request, id=0):
-    code = request.GET['code']
-    return render_to_response('player.html', {'code':code })
+    try:
+        recording = Recording.objects.get(id=id)
+    except:
+        return HttpResponseRedirect(reverse('index'))
+
+    return render_to_response('player.html', {'url':recording.url })
 
 
 def birthdays(request):
