@@ -17,7 +17,10 @@ def phone(request, number):
     calls = Call.objects.filter(user=user).order_by('-fetched_date')[:1]
     if calls:
         json_data = calls[0].data
-        jubilat = calls[0].data['bdays'][0]['name']
+        try:
+            jubilat = calls[0].data['bdays'][0]['name']
+        except:
+            jubilat = "No one has birthday today"
     else:
         json_data = {}
 
