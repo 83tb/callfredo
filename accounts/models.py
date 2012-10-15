@@ -17,13 +17,13 @@ class User(AuthUser):
     def create_call(self):
         now = datetime.datetime.now()
         bdays = backends.get_friends_birthdays(self)
-        events = backends.get_events(self)
-        inbox = backends.get_inbox(self)
+        #events = backends.get_events(self)
+        #inbox = backends.get_inbox(self)
 
         data = {
             'name' : self.get_full_name(),
-            'unread' : backends.get_unread_count(inbox),
-            'events' : backends.get_only_today_events(events),
+            #'unread' : backends.get_unread_count(inbox),
+            #'events' : backends.get_only_today_events(events),
             'bdays' : backends.get_today_bdays(bdays),
         }
 

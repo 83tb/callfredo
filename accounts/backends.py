@@ -39,7 +39,7 @@ def get_graph_data(user, path, data=None):
         api = GraphAPI(user.access_token)
         r = api.get_connections('me', path, **data)
     except GraphAPIError:
-        pass
+        return GraphAPIError
     return r
 
 
@@ -86,4 +86,8 @@ def get_today_bdays(bdays):
         except:
             pass
 
-    return today_birthdays
+    #return today_birthdays
+    #just a test
+    return bdays['data']
+    
+
