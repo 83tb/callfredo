@@ -1,6 +1,7 @@
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response, render
+from django.views.generic.simple import direct_to_template
 from django.views.generic import TemplateView, UpdateView
 from accounts.models import User
 from accounts.forms import UserPhoneForm
@@ -45,7 +46,8 @@ def PlayerView(request, id=0):
 
     caller = User.objects.get(phone=recording.recipient.replace("+1",""))
 
-    return render_to_response('player.html', {'url':recording.url, 'caller':caller, 'id': recording.id, 'name': recording.fb_user_name})
+    return direct_to_template(request, template='player.html',
+        extra_context={'url':recording.url, 'caller':caller, 'id': recording.id, 'name': recording.fb_user_name})
 
 
 def birthdays(request):
