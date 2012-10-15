@@ -8,21 +8,21 @@ import views
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^accounts/', include('accounts.urls', namespace='accounts')),
+
     url(r'^$', views.IndexView.as_view(), name='index'),
     url(r'^givenumber/$', login_required(views.GiveNumberView.as_view()), name='givenumber'),
-    #url(r'^confirmnumber/$', views.ConfirmNumberView.as_view(), name='confirmnumber'),
-    #url(r'^schedule/$', views.ScheduleView.as_view(), name='schedule'),
-    #url(r'^saveincontacts/$', views.SaveInContactsView.as_view(), name='saveincontacts'),
     url(r'^tryit/$', views.TryItView, name='tryit'),
 
     url(r'^birthdays/$', login_required(views.birthdays), name='birthdays'),
-
     url(r'^social/', include(social_auth_urls)),
     url(r'^phone/', include('phonehome.urls')),
     url(r'^wishes/(?P<id>\d+)/$', views.PlayerView),
 
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^accounts/', include('accounts.urls', namespace='accounts'))
+    #url(r'^confirmnumber/$', views.ConfirmNumberView.as_view(), name='confirmnumber'),
+    #url(r'^schedule/$', views.ScheduleView.as_view(), name='schedule'),
+    #url(r'^saveincontacts/$', views.SaveInContactsView.as_view(), name='saveincontacts'),
 )
 
 urlpatterns += staticfiles_urlpatterns()

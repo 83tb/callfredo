@@ -1,9 +1,4 @@
-@import url("boilerplate.css");
-@import url("nivo-slider.css");
-@import url("prettyphoto.css");
 @import url("layout.css");
-
-
 
 html {
     background: url("/static/img/bgbirth.jpg") no-repeat center center fixed;
