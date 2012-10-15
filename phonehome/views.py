@@ -17,11 +17,13 @@ def phone(request, number):
     calls = Call.objects.filter(user=user).order_by('-fetched_date')[:1]
     if calls:
         json_data = calls[0].data
+        jubilat = calls[0].data['bdays']['id']
     else:
         json_data = {}
 
     return direct_to_template(request, template='default.xml',
                               extra_context={'json_data': json_data,
+                                             'jubilat' : jubilat,
                                              'user': user})
 
     
