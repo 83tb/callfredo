@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response, render
 from django.views.generic import TemplateView, UpdateView
 from accounts.forms import UserPhoneForm
+from phonehome.models import Recording
 
 
 class IndexView(TemplateView):
