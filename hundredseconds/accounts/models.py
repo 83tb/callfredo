@@ -5,8 +5,8 @@ from hundredseconds.accounts import backends
 
 class User(AuthUser):
     phone = models.CharField(max_length=40, blank=True)
-    calling_hour = models.IntegerField()
-    calling_minute = models.IntegerField()
+    calling_hour = models.IntegerField(default=0)
+    calling_minute = models.IntegerField(default=0)
     objects = UserManager()
 
     @property

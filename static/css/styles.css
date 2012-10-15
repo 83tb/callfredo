@@ -25,14 +25,17 @@ p {
     font-size: 20px;
     color: white;
     text-shadow: 1px 1px 3px #323232;
-
+    margin-bottom: 20px;
 }
 
 input.text {
-    background-color: black;
-    opacity:0.4;
-    filter:alpha(opacity=40);
+    background-color: rgba(0,0,0,0.4);
+    float:none;
+    clear:both;
+    margin: 10px 0 25px 0;
+    color: white;
 }
+
 
 .content {
     width:700px;
@@ -40,4 +43,8 @@ input.text {
     text-align:center;
     padding:15px;
 
+}
+
+img.logo {
+    margin-bottom:40px;
 }
