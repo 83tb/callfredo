@@ -47,21 +47,25 @@ def recording(request):
     # Called by Twilio when recording is finished
     user = None
     if request.method == 'POST':
+
+        number = request.POST.get('To')[2:] # Remove leading '+1'
+
+        user = User.objects.get(phone=number)
+        social_user = user.social_auth.get(provider='facebook')
+        api = GraphAPI(social_user.extra_data.get('access_token'))
+
+        call = Call.objects.filter(user=user).order_by('-id')[:1].get()
+
         recording = Recording(call_sid=request.POST.get('CallSid'),
                                  caller=request.POST.get('From'),
                                  recipient=request.POST.get('To'),
                                  duration=int(request.POST.get('RecordingDuration')),
-                                 url=request.POST.get('RecordingUrl'))
+                                 url=request.POST.get('RecordingUrl'),
+                                 fb_user_name=call.data['bdays'][0]['name'])
         recording.save()
 
-        number = request.POST.get('To')[2:] # Remove leading '+1'
+
         try:
-            user = User.objects.get(phone=number)
-            social_user = user.social_auth.get(provider='facebook')
-            api = GraphAPI(social_user.extra_data.get('access_token'))
-
-            call = Call.objects.filter(user=user).order_by('-id')[:1].get()
-
             api.put_wall_post("Happy birthday!",
                               profile_id=call.data['bdays'][0]['id'],
                               attachment={'name': 'Happy birthday!',

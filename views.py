@@ -45,7 +45,7 @@ def PlayerView(request, id=0):
 
     caller = User.objects.get(phone=recording.recipient.replace("+1",""))
 
-    return render_to_response('player.html', {'url':recording.url, 'caller':caller, 'id': recording.id})
+    return render_to_response('player.html', {'url':recording.url, 'caller':caller, 'id': recording.id, 'name': recording.fb_user_name})
 
 
 def birthdays(request):
