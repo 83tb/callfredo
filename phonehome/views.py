@@ -1,8 +1,10 @@
+import datetime
 from facebook import GraphAPI, GraphAPIError #@UnresolvedImport
 from twilio.rest import TwilioRestClient
 
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.simple import direct_to_template
+from django.contrib.auth.decorators import login_required
 from django.conf import settings
 
 from phonehome.models import Call, Recording
@@ -24,14 +26,19 @@ def phone(request, number):
                                              'jubilat' : jubilat,
                                              'user': user})
 
-
+@login_required
 def call(request, number):
+    today = datetime.date.today()
+    user = request.user
+    if user.last_call_date == today:
+        return direct_to_template(request, template='error.html', extra_context={})
+
     client = TwilioRestClient(settings.ACCOUNT_SID, settings.AUTH_TOKEN)
     call = client.calls.create(to=number, from_=settings.OUTGOING_NUMBER,
                                url='http://callfredo.com/phone/twiml/%s/' % number)
-
-    return direct_to_template(request, template='done.html',
-        extra_context={})
+    user.last_call_date = today
+    user.save()
+    return direct_to_template(request, template='done.html', extra_context={})
 
 
 @csrf_exempt

@@ -21,13 +21,13 @@ class CustomUserChangeForm(UserChangeForm):
 
 
 class CustomUserAdmin(UserAdmin):
-    list_display = ('username', 'phone', 'call', 'email', 'first_name', 'last_name', 'last_login', 'date_joined', 'is_staff')
+    list_display = ('username', 'phone', 'call', 'last_call_date', 'email', 'first_name', 'last_name', 'last_login', 'date_joined', 'is_staff')
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
         (_('Personal info'), {'fields': ('first_name', 'last_name', 'email', 'phone')}),
         (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
                                        'groups', 'user_permissions')}),
-        (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
+        (_('Important dates'), {'fields': ('last_call_date', 'last_login', 'date_joined')}),
     )
     form = CustomUserChangeForm
     add_form = CustomUserCreationForm
