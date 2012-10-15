@@ -17,7 +17,10 @@ def phone(request, number):
     calls = Call.objects.filter(user=user).order_by('-fetched_date')[:1]
     if calls:
         json_data = calls[0].data
-        jubilat = calls[0].data['bdays'][0]['name']
+        try:
+            jubilat = calls[0].data['bdays'][0]['name']
+        except:
+            jubilat = "None"
     else:
         json_data = {}
 
@@ -31,8 +34,8 @@ def call(request, number):
     today = datetime.date.today()
     user = request.user
     data = request.user.create_call()
-    if user.last_call_date == today:
-        return direct_to_template(request, template='error.html', extra_context={})
+    #if user.last_call_date == today:
+    #    return direct_to_template(request, template='error.html', extra_context={})
 
     client = TwilioRestClient(settings.ACCOUNT_SID, settings.AUTH_TOKEN)
     call = client.calls.create(to=number, from_=settings.OUTGOING_NUMBER,
