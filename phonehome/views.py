@@ -20,7 +20,7 @@ def phone(request, number):
         try:
             jubilat = calls[0].data['bdays'][0]['name']
         except:
-            jubilat = "No one has birthday today"
+            jubilat = "None"
     else:
         json_data = {}
 

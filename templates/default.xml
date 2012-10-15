@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
-  <Say>Hi {{ user.get_full_name }}, don't forget that your friend {{ jubilat }} has birthday today. Just start talking after a beep and we'll post your wishes on her wall.</Say>
 
-  <Record playBeep="true" maxLength="10" action="http://callfredo.com/phone/recording/" method="POST" />
+
+  {% if julbilat = "None" %}
+
+  <Say>No one of your friends has birthday today, have a nice day!</Say>
+
+  {% else %}
+  <Say>Hi {{ user.get_full_name }}, don't forget that your friend {{ jubilat }} has birthday today. Just start talking after a beep and we'll post your wishes on her wall.</Say>
+      <Record playBeep="true" maxLength="10" action="http://callfredo.com/phone/recording/" method="POST" />
+  {% endif %}
+
+
 </Response>
 
