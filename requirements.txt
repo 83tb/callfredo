@@ -9,4 +9,3 @@ South==0.7.6
 requests==0.14.0
 -e git+git://github.com/pythonforfacebook/facebook-sdk.git@ad63a5889783f3c581d2a0c0d5d49613065af100#egg=facebook
 APScheduler==2.0.3
-soundcloud==0.3.1
