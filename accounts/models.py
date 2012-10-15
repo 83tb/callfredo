@@ -1,7 +1,7 @@
 import datetime
 from django.db import models
 from django.contrib.auth.models import User as AuthUser, UserManager
-from hundredseconds.accounts import backends
+from accounts import backends
 
 class User(AuthUser):
     phone = models.CharField(max_length=40, blank=True)

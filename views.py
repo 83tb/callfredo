@@ -2,7 +2,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response, render
 from django.views.generic import TemplateView, UpdateView
-from hundredseconds.accounts.forms import UserPhoneForm
+from accounts.forms import UserPhoneForm
 
 
 class IndexView(TemplateView):

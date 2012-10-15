@@ -3,7 +3,7 @@ import re
 from django import forms
 from django.forms import ValidationError
 
-from hundredseconds.accounts.models import User
+from accounts.models import User
 
 
 class UserPhoneForm(forms.ModelForm):

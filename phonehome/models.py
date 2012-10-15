@@ -1,6 +1,6 @@
 from phonehome.utils import JSONField
 from django.db import models
-from hundredseconds.accounts.models import User
+from accounts.models import User
 
 
 class Call(models.Model):

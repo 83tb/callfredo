@@ -3,7 +3,7 @@ from django.contrib.auth.models import User as AuthUser
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.utils.translation import ugettext, ugettext_lazy as _
-from hundredseconds.accounts.models import User
+from accounts.models import User
 from django.core.urlresolvers import reverse
 
 

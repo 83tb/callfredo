@@ -9,7 +9,7 @@ cd callfredo
 virtualenv --distribute --no-site-packages env
 source env/bin/activate
 pip install -r requirements.txt
-cp hundredseconds/localsettings.py{.template,}
+cp localsettings.py{.template,}
 ./manage.py runserver
 </pre>
 

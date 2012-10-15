@@ -1,7 +1,7 @@
 import os
 import dj_database_url
 
-SITE_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+SITE_ROOT = os.path.join(os.path.dirname(__file__))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -92,13 +92,13 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'hundredseconds.urls'
+ROOT_URLCONF = 'urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'hundredseconds.wsgi.application'
+WSGI_APPLICATION = 'wsgi.application'
 
 TEMPLATE_DIRS = (
-    os.path.join(SITE_ROOT, './templates'),
+    os.path.join(SITE_ROOT, 'templates'),
 )
 
 INSTALLED_APPS = (
@@ -112,7 +112,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'south',
     'social_auth',
-    'hundredseconds.accounts',
+    'accounts',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -151,7 +151,7 @@ SOCIAL_AUTH_USER_MODEL = CUSTOM_USER_MODEL
 
 AUTHENTICATION_BACKENDS = (
     'social_auth.backends.facebook.FacebookBackend',
-    'hundredseconds.accounts.backends.UserModelBackend',
+    'accounts.backends.UserModelBackend',
 )
 
 SOCIAL_AUTH_ENABLED_BACKENDS = ('facebook',)

@@ -4,7 +4,7 @@ from apscheduler.scheduler import Scheduler
 sched = Scheduler()
 sched.start()
 
-from hundredseconds.accounts.models import User
+from accounts.models import User
 from datetime import datetime
 
 def execute_calls():

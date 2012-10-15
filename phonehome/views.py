@@ -8,7 +8,7 @@ from django.conf import settings
 from django.http import HttpResponse
 
 from phonehome.models import Call, Recording
-from hundredseconds.accounts.models import User
+from accounts.models import User
 
 
 @csrf_exempt
