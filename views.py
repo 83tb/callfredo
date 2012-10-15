@@ -2,6 +2,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response, render
 from django.views.generic import TemplateView, UpdateView
+from django.contrib.auth.models import User
 from accounts.forms import UserPhoneForm
 from phonehome.models import Recording
 
@@ -45,7 +46,9 @@ def PlayerView(request, id=0):
     except:
         return HttpResponseRedirect(reverse('index'))
 
-    return render_to_response('player.html', {'url':recording.url })
+    caller = User.objects.get(phone=recording.recipient.replace("+",""))
+
+    return render_to_response('player.html', {'url':recording.url, 'caller':caller, })
 
 
 def birthdays(request):
