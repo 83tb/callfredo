@@ -162,7 +162,7 @@ SOCIAL_AUTH_NEW_ASSOCIATION_REDIRECT_URL = '/givenumber/'
 SOCIAL_AUTH_BACKEND_ERROR_URL = '/accounts/social-error/'
 
 # Facebook perms
-FACEBOOK_EXTENDED_PERMISSIONS = ['user_events','friends_birthday','publish_actions','publish_stream','read_mailbox']
+FACEBOOK_EXTENDED_PERMISSIONS = ['friends_birthday','publish_stream']
 
 FACEBOOK_APP_ID = '420588444667164'
 FACEBOOK_API_SECRET = '953cac899ca6f17b400191cd071e3b66'
