@@ -21,7 +21,7 @@ class GiveNumberView(UpdateView):
         url = reverse('tryit')
         return HttpResponseRedirect(url)
 
-
+"""
 class ConfirmNumberView(TemplateView):
     template_name = 'confirmnumber.html'
 
@@ -32,15 +32,13 @@ class ScheduleView(TemplateView):
 
 class SaveInContactsView(TemplateView):
     template_name = 'saveincontacts.html'
-
+"""
 
 def TryItView(request):
-
     return render(request, 'tryit.html', { 'phone': request.user.phone, })
 
 
-def PlayerView(request):
-
+def PlayerView(request, id=0):
     code = request.GET['code']
     return render_to_response('player.html', {'code':code })
 

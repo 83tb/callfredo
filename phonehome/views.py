@@ -20,7 +20,7 @@ def phone(request, number):
     else:
         json_data = {}
 
-    return direct_to_template(request, template='phonehome/default.xml',
+    return direct_to_template(request, template='default.xml',
                               extra_context={'json_data': json_data,
                                              'user': user})
 
@@ -68,5 +68,5 @@ def recording(request):
         except (User.DoesNotExist, GraphAPIError):
             user = None
     
-    return direct_to_template(request, template='phonehome/afterrecording.xml',
+    return direct_to_template(request, template='afterrecording.xml',
                               extra_context={'user': user})
