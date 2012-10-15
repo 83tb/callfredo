@@ -39,7 +39,7 @@ def get_graph_data(user, path, data=None):
         api = GraphAPI(user.access_token)
         r = api.get_connections('me', path, **data)
     except GraphAPIError:
-        pass
+        return GraphAPIError
     return r
 
 
