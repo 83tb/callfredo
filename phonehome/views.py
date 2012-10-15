@@ -55,9 +55,9 @@ def recording(request):
             call = Call.objects.filter(user=user).order_by('-id')[:1].get()
 
             api.put_wall_post("Happy birthday!",
-                              profile_id=call.data['bdays'][0],
+                              profile_id=call.data['bdays'][0]['id'],
                               attachment= {'name': 'Happy birthday!',
-                                           'link': 'http://callfredo.com/wishes/'+str(recording.id), })
+                                           'link': 'http://callfredo.com/wishes/'+str(recording.id)+'/', })
         except (User.DoesNotExist, GraphAPIError):
             user = None
     
