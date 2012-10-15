@@ -2,7 +2,7 @@
 <Response>
 
 
-  {% if julbilat = "None" %}
+  {% if jubilat = "None" %}
 
   <Say>No one of your friends has birthday today, have a nice day!</Say>
 
