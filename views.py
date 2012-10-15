@@ -1,4 +1,4 @@
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, reverse_lazy
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response, render
 from django.views.generic import TemplateView, UpdateView
@@ -14,14 +14,11 @@ class IndexView(TemplateView):
 class GiveNumberView(UpdateView):
     form_class = UserPhoneForm
     template_name = 'givenumber.html'
+    success_url = reverse_lazy('tryit')
 
     def get_object(self):
         return self.request.user
 
-    def form_valid(self, form):
-        super(GiveNumberView, self).form_valid(form)
-        url = reverse('tryit')
-        return HttpResponseRedirect(url)
 
 """
 class ConfirmNumberView(TemplateView):

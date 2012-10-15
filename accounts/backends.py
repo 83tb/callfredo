@@ -1,10 +1,12 @@
 import datetime
+import requests
 from django.conf import settings
 from django.contrib.auth.backends import ModelBackend
 from django.db.models import Q
 from django.db.models.loading import get_model
 from django.core.exceptions import ImproperlyConfigured
 from facebook import GraphAPI, GraphAPIError #@UnresolvedImport
+from django.core.serializers import json
 
 
 class UserModelBackend(ModelBackend):
@@ -42,7 +44,12 @@ def get_graph_data(user, path, data=None):
 
 
 def get_friends_birthdays(user):
-    return get_graph_data(user, 'friends', {'fields': 'birthday'})
+    result = page = get_graph_data(user, 'friends', {'fields': 'birthday,name'})
+    while 'paging' in page and 'next' in page['paging']:
+        page = requests.get(result['paging']['next'])
+        page = json.simplejson.loads(page.content)
+        result['data'].extend(page['data'])
+    return result
 
 
 def get_inbox(user):
@@ -63,14 +70,17 @@ def get_only_today_events(events):
 
 
 def get_unread_count(inbox):
-    print(inbox)
-    return 0
-
+    unread = 0
+    for m in inbox['data']:
+        unread += m['unread']
+    return unread
 
 def get_today_bdays(bdays):
     today_birthdays = []
     for bday in bdays['data']:
         try:
+            if len(bday['birthday']) <= 5:
+                bday['birthday'] += u'/1970'
             if str(datetime.datetime.strptime(bday['birthday'], "%m/%d/%Y").strftime("%Y-%m-%d"))[5:] == str(datetime.date.today())[5:]:
                 today_birthdays.append(bday)
         except:

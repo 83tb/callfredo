@@ -1,11 +1,9 @@
 from facebook import GraphAPI, GraphAPIError #@UnresolvedImport
 from twilio.rest import TwilioRestClient
-import soundcloud, urllib
 
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.simple import direct_to_template
 from django.conf import settings
-from django.http import HttpResponse
 
 from phonehome.models import Call, Recording
 from accounts.models import User
@@ -17,7 +15,7 @@ def phone(request, number):
     calls = Call.objects.filter(user=user).order_by('-fetched_date')[:1]
     if calls:
         json_data = calls[0].data
-        jubilat = calls[0].data['bdays'][0]['id']
+        jubilat = calls[0].data['bdays'][0]['name']
     else:
         json_data = {}
 
@@ -26,7 +24,7 @@ def phone(request, number):
                                              'jubilat' : jubilat,
                                              'user': user})
 
-    
+
 def call(request, number):
     client = TwilioRestClient(settings.ACCOUNT_SID, settings.AUTH_TOKEN)
     call = client.calls.create(to=number, from_=settings.OUTGOING_NUMBER,
@@ -58,10 +56,10 @@ def recording(request):
 
             api.put_wall_post("Happy birthday!",
                               profile_id=call.data['bdays'][0]['id'],
-                              attachment= {'name': 'Happy birthday!',
-                                           'link': 'http://callfredo.com/wishes/'+str(recording.id)+'/', })
+                              attachment={'name': 'Happy birthday!',
+                                           'link': 'http://callfredo.com/wishes/' + str(recording.id) + '/', })
         except (User.DoesNotExist, GraphAPIError):
             user = None
-    
+
     return direct_to_template(request, template='afterrecording.xml',
                               extra_context={'user': user})
