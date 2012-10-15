@@ -28,9 +28,10 @@ def phone(request, number):
 def call(request, number):
     client = TwilioRestClient(settings.ACCOUNT_SID, settings.AUTH_TOKEN)
     call = client.calls.create(to=number, from_=settings.OUTGOING_NUMBER,
-                               url='http://desolate-escarpment-8965.herokuapp.com/phone/twiml/%s/' % number)
-    
-    return HttpResponse(call.sid)
+                               url='http://callfredo.com/phone/twiml/%s/' % number)
+
+    return direct_to_template(request, template='done.html',
+        extra_context={})
 
 
 @csrf_exempt

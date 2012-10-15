@@ -1,6 +1,6 @@
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, render
 from django.views.generic import TemplateView, UpdateView
 from hundredseconds.accounts.forms import UserPhoneForm
 
@@ -18,7 +18,7 @@ class GiveNumberView(UpdateView):
 
     def form_valid(self, form):
         super(GiveNumberView, self).form_valid(form)
-        url = reverse('schedule')
+        url = reverse('tryit')
         return HttpResponseRedirect(url)
 
 
@@ -34,8 +34,9 @@ class SaveInContactsView(TemplateView):
     template_name = 'saveincontacts.html'
 
 
-class TryItView(TemplateView):
-    template_name = 'tryit.html'
+def TryItView(request):
+
+    return render(request, 'tryit.html', { 'phone': request.user.phone, })
 
 
 def PlayerView(request):
