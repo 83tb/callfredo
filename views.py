@@ -46,7 +46,7 @@ def PlayerView(request, id=0):
     except:
         return HttpResponseRedirect(reverse('index'))
 
-    caller = User.objects.get(phone=recording.recipient.replace("+",""))
+    caller = User.objects.get(phone=recording.recipient.replace("+1",""))
 
     return render_to_response('player.html', {'url':recording.url, 'caller':caller, })
 

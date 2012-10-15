@@ -8,7 +8,6 @@ class Call(models.Model):
     data = JSONField(json_type=dict, default='{}')
     fetched_date = models.DateTimeField(auto_now_add=True)
 
-
 class Recording(models.Model):
     call_sid = models.CharField(max_length=240)
     caller = models.CharField(max_length=240)

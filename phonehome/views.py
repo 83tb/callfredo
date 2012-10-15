@@ -39,31 +39,25 @@ def recording(request):
     # Called by Twilio when recording is finished
     user = None
     if request.method == 'POST':
-        #Uploading to SoundCloud
-        """client = soundcloud.Client(client_id=settings.SOUNDCLOUD_CLIENT_ID, client_secret=settings.SOUNDCLOUD_CLIENT_SECRET, username=settings.SOUNDCLOUD_USERNAME, password=settings.SOUNDCLOUD_PASSWORD)
-        (filename, headers) = urllib.urlretrieve(request.GET.get('RecordingUrl')+".mp3")
-        file = open(filename, 'rb')
-        track = client.post('/tracks', track={
-            'title': 'Your birthday wishes!',
-            'description': 'Click here to hear birthday wishes recorded for you :)',
-            'asset_data': file,
-        })"""
-
-        Recording.objects.create(call_sid=request.POST.get('CallSid'),
+        recording = Recording(call_sid=request.POST.get('CallSid'),
                                  caller=request.POST.get('From'),
                                  recipient=request.POST.get('To'),
                                  duration=int(request.POST.get('RecordingDuration')),
                                  url=request.POST.get('RecordingUrl'))
+        recording.save()
 
-        number = request.POST.get('To')[1:] # Remove leading '+'
+        number = request.POST.get('To')[2:] # Remove leading '+1'
         try:
             user = User.objects.get(phone=number)
             social_user = user.social_auth.get(provider='facebook')
             api = GraphAPI(social_user.extra_data.get('access_token'))
-            api.put_wall_post("Wishing you a happy birthday!",
-                              profile_id='1557648750', # TODO: Change from Ola to dynamic
-                              attachment= {'name': 'Your birthday wishes!',
-                                           'link': track.permalink_url, })
+
+            call = Call.objects.filter(user=user).order_by('-id')[:1].get()
+
+            api.put_wall_post("Happy birthday!",
+                              profile_id=call.data['bdays'][0],
+                              attachment= {'name': 'Happy birthday!',
+                                           'link': 'http://callfredo.com/wishes/'+str(recording.id), })
         except (User.DoesNotExist, GraphAPIError):
             user = None
     
