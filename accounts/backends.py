@@ -83,8 +83,8 @@ def get_today_bdays(bdays):
             test = bday['birthday']
 
         except:
-            bday['birthday'] = "00/00"
-            
+            bday['birthday'] = "01/01"
+
         if len(bday['birthday']) <= 5:
             bday['birthday'] += u'/1970'
         if str(datetime.datetime.strptime(bday['birthday'], "%m/%d/%Y").strftime("%Y-%m-%d"))[5:] == str(datetime.date.today())[5:]:
