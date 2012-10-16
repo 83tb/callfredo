@@ -76,6 +76,7 @@ def get_unread_count(inbox):
     return unread
 
 def get_today_bdays(bdays):
+
     today_birthdays = []
     for bday in bdays['data']:
         try:
@@ -83,7 +84,7 @@ def get_today_bdays(bdays):
             test = bday['birthday']
 
         except:
-            bday['birthday'] = "01/01"
+            bday['birthday'] = u'01/01'
 
         if len(bday['birthday']) <= 5:
             bday['birthday'] += u'/1970'
@@ -93,11 +94,11 @@ def get_today_bdays(bdays):
             today_birthdays.append(bday)
 
         print today_birthdays
-        
 
 
-    return today_birthdays
+
+    #return today_birthdays
     #just a test
-    #return bdays['data']
+    return bdays['data']
 
 
