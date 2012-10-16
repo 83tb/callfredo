@@ -20,14 +20,14 @@
 <div id="top"></div>
 <div id="container">
     <div style="margin-top: 100px;" class="content">
-        <p>{{ caller.first_name }} is wishing you happy birthday!</p>
-        <p>Click ▸ below to hear it</p>
+        <h1>{{ caller.first_name }} is wishing you happy birthday!</h1>
 
-        <object type="application/x-shockwave-flash" data="/static//player_mp3.swf" width="400" height="30">
+        <object type="application/x-shockwave-flash" data="/static//player_mp3.swf" width="400" height="20">
             <param name="movie" value="/static/player_mp3.swf" />
-            <param name="bgcolor" value="#ffffff" />
             <param name="FlashVars" value="mp3={{ url }}.mp3&autoplay=1&show_info=0&textcolor=666666&buttoncolor=666666&buttonovercolor=000000&bgcolor1=f5f5f5&bgcolor2=cccccc&sliderovercolor=333333" />
         </object>
+
+        <p style="opacity:0.4; font-size:16px; margin-top:120px;">Wanna wish all best to your friend? Start using <a href="http://callfredo.com/">Callfredo</a>!</p>
 
     </div>
 </div>
