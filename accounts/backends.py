@@ -96,8 +96,9 @@ def get_today_bdays(bdays):
         print today_birthdays
 
 
-
+    print len(bdays['data'])
     return today_birthdays
+
     #just a test
     #return bdays['data']
 
