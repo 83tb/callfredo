@@ -70,7 +70,7 @@ def recording(request):
 
 
         try:
-            time.sleep(10)
+            #time.sleep(10)
             api.put_wall_post("Happy birthday!",
                               profile_id=call.data['bdays'][0]['id'],
                               attachment={'name': 'Happy birthday!',
