@@ -22,8 +22,9 @@
     <div style="margin-top: 100px;" class="content">
         <h1>{{ caller.first_name }} is wishing you happy birthday!</h1>
 
-        <object type="application/x-shockwave-flash" data="/static//player_mp3.swf" width="400" height="20">
+        <object type="application/x-shockwave-flash" data="/static//player_mp3.swf" width="600" height="30">
             <param name="movie" value="/static/player_mp3.swf" />
+            <param name="wmode" value="transparent">
             <param name="FlashVars" value="mp3={{ url }}.mp3&autoplay=1&show_info=0&textcolor=666666&buttoncolor=666666&buttonovercolor=000000&bgcolor1=f5f5f5&bgcolor2=cccccc&sliderovercolor=333333" />
         </object>
 

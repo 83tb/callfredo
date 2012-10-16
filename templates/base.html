@@ -15,19 +15,17 @@
 <div id="container">
     <div style="margin-top: 100px;" class="content">
         <img src="{{ STATIC_URL }}img/logo.png" class="logo">
-{% block content %}
-        <p>OK! Give Fredo your phone number:</p>
+        {% block content %}
 
-        <form action="" method="post">{% csrf_token %}
-            {{ form.phone }}
-            {{ form.phone.errors }}
-            <br><br>
-            <p>for example: 48666999333 (yes without plus sign) </p>
-            <br><br><br>
-            <input type="image" src="{{ STATIC_URL }}img/next.png">
-        </form>
-{% endblock %}
+        {% endblock %}
     </div>
+
+    <footer>
+        @<a href="http://twitter.com/callfredo">callfredo</a> with ♥ from @<a href="http://twitter.com/83TB">83TB</a>, @<a href="http://twitter.com/olasitarska">olasitarska</a>, @<a href="http://twitter.com/haxoza">haxoza</a>, @<a href="http://twitter.com/mstepniowski">mstepniowski</a> and @<a href="http://twitter.com/KrzysiekW">KrzysiekW</a>
+    </footer>
+
 </div>
+
+
 </body>
 </html>
