@@ -97,8 +97,8 @@ def get_today_bdays(bdays):
 
 
 
-    #return today_birthdays
+    return today_birthdays
     #just a test
-    return bdays['data']
+    #return bdays['data']
 
 
