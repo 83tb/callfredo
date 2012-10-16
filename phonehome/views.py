@@ -44,6 +44,7 @@ def call(request, number):
     user.save()
     return direct_to_template(request, template='done.html', extra_context={})
 
+import time
 
 @csrf_exempt
 def recording(request):
@@ -69,6 +70,7 @@ def recording(request):
 
 
         try:
+            time.sleep(10)
             api.put_wall_post("Happy birthday!",
                               profile_id=call.data['bdays'][0]['id'],
                               attachment={'name': 'Happy birthday!',
