@@ -40,8 +40,9 @@ def press(request, id):
     bday = Birthday.objects.get(id=id)
     resp = twiml.Response()
     resp.pause(length="3")
-
-    if int(request.POST['Digits'][:1])==1:
+    bday.call.data = request.POST['Digits']
+    bday.call.save()
+    if int(request.POST['Digits'])==1:
         bday.status = 1
         bday.save()
 
