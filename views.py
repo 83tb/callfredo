@@ -31,9 +31,9 @@ def GiveNumberView(request):
             form.save()
 
             code = fetch_code()
-            obj = User.objects.get(id=request.user.id)
-            obj.code = code.upper()
-            obj.save()
+
+            request.user.code = code.upper()
+            request.user.save()
             send(request.user.first_name, code,form['phone'].value())
 
             return HttpResponseRedirect('/confirmnumber/')
