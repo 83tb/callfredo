@@ -17,8 +17,12 @@ class UserPhoneForm(forms.ModelForm):
         self.fields['phone'].widget.attrs['class'] = 'text'
 
     def clean_phone(self):
-        if not re.match(r'[0-9]+', self.cleaned_data['phone']):
+        try:
+            test = int(self.cleaned_data['phone'])
+        except:
             raise ValidationError('Phone number should contain only numbers.')
+        if len(str(self.cleaned_data['phone']))!=10:
+            raise ValidationError('Please provide proper US phone number.')
         return self.cleaned_data['phone']
 
 
