@@ -104,12 +104,12 @@ def recording(request, id):
 
         bday.recording = recording
         bday.save()
-
+        url = 'http://callfredo.com/wishes/' + str(bday.recording.id) + '/'
         try:
             api.put_wall_post("Happy birthday!",
                               profile_id=bday.recipient_fb_id,
                               attachment={'name': 'Happy birthday!',
-                                           'link': 'http://callfredo.com/wishes/' + str(recording.id) + '/', })
+                                           'link': url, })
         except (User.DoesNotExist, GraphAPIError):
             user = None
 
