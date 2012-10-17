@@ -6,7 +6,7 @@
     <form action="" method="post">{% csrf_token %}
         <INPUT class="text" type="text"></INPUT>
         <br />
-        <IMG SRC="/static/img/confirm.png">
+        <input type="image" src="{{ STATIC_URL }}img/confirm.png">
     </form>
 {% endblock %}
 
