@@ -12,3 +12,4 @@ localsettings.py
 .idea/
 src/facebook
 src/pip-delete-this-directory.txt
+.DS*
