@@ -40,8 +40,6 @@ def press(request, id):
     bday = Birthday.objects.get(id=id)
     resp = twiml.Response()
     resp.pause(length="3")
-    bday.recipient_fb_name = request.POST['Digits']
-    bday.save()
 
     if int(request.POST['Digits'])==1:
         bday.status = 1
@@ -104,12 +102,11 @@ def recording(request, id):
 
         bday.recording = recording
         bday.save()
-        url = 'http://callfredo.com/wishes/' + str(bday.recording.id) + '/'
+        url = str('http://callfredo.com/wishes/') + str(bday.recording.id) + str('/')
         try:
             api.put_wall_post("Happy birthday!",
-                              profile_id=bday.recipient_fb_id,
-                              attachment={'name': 'Happy birthday!',
-                                           'link': url, })
+                              profile_id=str(bday.recipient_fb_id),
+                              attachment={'name': 'Happy birthday!', 'link': str(url), })
         except (User.DoesNotExist, GraphAPIError):
             user = None
 
