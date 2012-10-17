@@ -53,7 +53,7 @@ def fetch_code():
     code = b64uid[0:4]
     return code.upper()
 
-def send(name, code):
+def send(name, code,number):
     # Construct the SMS text.
 
     message = 'Hey %s, this is your callfredo verification code: %s' % (name,code)
