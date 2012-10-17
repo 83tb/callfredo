@@ -30,7 +30,7 @@ def GiveNumberView(request):
             obj = User.objects.get(id=request.user.id)
             obj.code = code
             obj.save()
-            send(request.user.first_name, code,form['phone'])
+            send(request.user.first_name, code,form['phone'].value())
 
             return HttpResponseRedirect('/confirmnumber/')
     else:
@@ -50,7 +50,7 @@ def ConfirmNumberView(request):
 
 
 
-            if form['code'] == request.user.code:
+            if request.user.code == form['code'].value():
 
                 return HttpResponseRedirect('/tryit/')
             else:
