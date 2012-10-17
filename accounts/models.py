@@ -16,7 +16,7 @@ class User(AuthUser):
 
     def create_call(self):
         now = datetime.datetime.now()
-        bdays = backends.get_friends_birthdays(backends.get_today_bdays(bdays))
+        bdays = backends.get_today_bdays(backends.get_friends_birthdays(self))
 
         data = {
             'name' : self.get_full_name(),
