@@ -33,15 +33,17 @@ def phone(request, number):
 def call(request, number):
     today = datetime.date.today()
     user = request.user
-    data = request.user.create_call()
+    #data = request.user.create_call()
     #if user.last_call_date == today:
     #    return direct_to_template(request, template='error.html', extra_context={})
-
     client = TwilioRestClient(settings.ACCOUNT_SID, settings.AUTH_TOKEN)
+
+
     call = client.calls.create(to=number, from_=settings.OUTGOING_NUMBER,
                                url='http://callfredo.com/phone/twiml/%s/' % number)
     user.last_call_date = today
     user.save()
+
     return direct_to_template(request, template='done.html', extra_context={})
 
 import time
