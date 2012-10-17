@@ -6,28 +6,19 @@ from django.views.generic import TemplateView, UpdateView
 from accounts.models import User
 from accounts.forms import UserPhoneForm, ConfirmForm
 from phonehome.models import Recording
+from phonehome.sendsms import send, fetch_code
+from django.contrib.auth.decorators import login_required
 
 
 class IndexView(TemplateView):
     template_name = 'index.html'
 
-from phonehome.sendsms import send, fetch_code
-
-
-from django.contrib.auth.decorators import login_required
-
 
 @login_required()
 def GiveNumberView(request):
-
-    template_name = 'givenumber.html'
-
     if request.method == 'POST':
-        form = UserPhoneForm(request.POST)
+        form = UserPhoneForm(request.POST, instance=request.user)
         if form.is_valid():
-
-
-
             form.save()
 
             code = fetch_code()
@@ -36,45 +27,35 @@ def GiveNumberView(request):
             request.user.save()
             send(request.user.first_name, code,form['phone'].value())
 
-            return HttpResponseRedirect('/confirmnumber/')
+            return HttpResponseRedirect(reverse('confirmnumber'))
     else:
         form = UserPhoneForm()
 
-    return render(request, template_name, {
+    return render(request, 'givenumber.html', {
         'form': form,
         })
 
 @login_required()
 def ConfirmNumberView(request):
-
-    template_name = 'confirmnumber.html'
-
     if request.method == 'POST':
         form = ConfirmForm(request.POST)
         if form.is_valid():
-
-
-
             if request.user.code == form['code'].value():
-
-                return HttpResponseRedirect('/tryit/')
+                return HttpResponseRedirect(reverse('tryit'))
             else:
                 form = ConfirmForm()
-
+        else:
+            form = ConfirmForm()
     else:
         form = ConfirmForm()
 
-    return render(request, template_name, {
+    return render(request, 'confirmnumber.html', {
         'form': form,
         })
 
 
 
 """
-class ConfirmNumberView(TemplateView):
-    template_name = 'confirmnumber.html'
-
-
 class ScheduleView(TemplateView):
     template_name = 'schedule.html'
 
