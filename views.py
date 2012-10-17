@@ -38,7 +38,7 @@ def GiveNumberView(request):
 @login_required()
 def ConfirmNumberView(request):
     if request.method == 'POST':
-        form = ConfirmForm(request.POST)
+        form = ConfirmForm(request.POST, instance=request.user)
         if form.is_valid():
             return HttpResponseRedirect(reverse('tryit'))
     else:
