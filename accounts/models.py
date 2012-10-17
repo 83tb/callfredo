@@ -9,6 +9,7 @@ class User(AuthUser):
     calling_minute = models.IntegerField(default=0)
     last_call_date = models.DateField(default=lambda: datetime.date.today() - datetime.timedelta(days=1))
     objects = UserManager()
+    code = models.CharField(max_length=6)
 
     @property
     def access_token(self):

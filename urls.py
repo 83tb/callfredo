@@ -12,7 +12,8 @@ urlpatterns = patterns('',
     url(r'^accounts/', include('accounts.urls', namespace='accounts')),
 
     url(r'^$', views.IndexView.as_view(), name='index'),
-    url(r'^givenumber/$', login_required(views.GiveNumberView.as_view()), name='givenumber'),
+    url(r'^givenumber/$', views.GiveNumberView, name='givenumber'),
+    url(r'^confirmnumber/$', views.ConfirmNumberView, name='confirmnumber'),
     url(r'^tryit/$', views.TryItView, name='tryit'),
 
     url(r'^birthdays/$', login_required(views.birthdays), name='birthdays'),

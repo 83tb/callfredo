@@ -4,21 +4,65 @@ from django.shortcuts import render_to_response, render
 from django.views.generic.simple import direct_to_template
 from django.views.generic import TemplateView, UpdateView
 from accounts.models import User
-from accounts.forms import UserPhoneForm
+from accounts.forms import UserPhoneForm, ConfirmForm
 from phonehome.models import Recording
 
 
 class IndexView(TemplateView):
     template_name = 'index.html'
 
+from phonehome.sendsms import send, fetch_code
 
-class GiveNumberView(UpdateView):
-    form_class = UserPhoneForm
+
+def GiveNumberView(request):
+
     template_name = 'givenumber.html'
-    success_url = reverse_lazy('tryit')
 
-    def get_object(self):
-        return self.request.user
+    if request.method == 'POST':
+        form = UserPhoneForm(request.POST)
+        if form.is_valid():
+
+
+
+            form.save()
+
+            code = fetch_code()
+            obj = User.objects.get(id=request.user.id)
+            obj.code = code
+            obj.save()
+            send(request.user.first_name, code)
+
+            return HttpResponseRedirect('/confirmnumber/')
+    else:
+        form = UserPhoneForm()
+
+    return render(request, template_name, {
+        'form': form,
+        })
+
+def ConfirmNumberView(request):
+
+    template_name = 'confirmnumber.html'
+
+    if request.method == 'POST':
+        form = ConfirmForm(request.POST)
+        if form.is_valid():
+
+
+
+            if form['code'] == request.user.code:
+
+                return HttpResponseRedirect('/tryit/')
+            else:
+                form = ConfirmForm()
+
+    else:
+        form = ConfirmForm()
+
+    return render(request, template_name, {
+        'form': form,
+        })
+
 
 
 """
