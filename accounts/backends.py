@@ -45,13 +45,10 @@ def get_graph_data(user, path, data=None):
 
 def get_friends_birthdays(user):
     result = page = get_graph_data(user, 'friends', {'fields': 'birthday,name'})
-    while 'paging' in page:
-        if 'next' in page['paging']:
-
-            page = requests.get(result['paging']['next'])
-            page = json.simplejson.loads(page.content)
-            result['data'].extend(page['data'])
-
+    while 'paging' in page and 'next' in page['paging']:
+        page = requests.get(result['paging']['next'])
+        page = json.simplejson.loads(page.content)
+        result['data'].extend(page['data'])
 
     return result
 
@@ -80,26 +77,18 @@ def get_unread_count(inbox):
     return unread
 
 def get_today_bdays(bdays):
-
     today_birthdays = []
     for bday in bdays['data']:
         try:
-
-
-
             if len(bday['birthday']) <= 5:
                 bday['birthday'] += u'/1970'
 
-
             if str(datetime.datetime.strptime(bday['birthday'], "%m/%d/%Y").strftime("%Y-%m-%d"))[5:] == str(datetime.date.today())[5:]:
                 today_birthdays.append(bday)
-
         except:
             pass
 
-
-
-        return today_birthdays
+    return today_birthdays
 
     #just a test
     #return bdays['data']
