@@ -29,8 +29,8 @@ def phone(request, number):
             resp.say(bday.recipient_fb_name)
 
         for bday in bdays:
-            resp.say("If you want record birthday wishes for %s, press 1. If you want to skip recording, then press 2." % bday.recipient_fb_name)
-            resp.gather(timeout=5, finishOnKey="1", action="http://callfredo.com/phone/press/"+str(bday.id)+"/", method="POST")
+            with resp.gather(timeout=5, finishOnKey=1, action="http://callfredo.com/phone/press/"+str(bday.id)+"/", method="POST") as g:
+                g.say("If you want record birthday wishes for %s, press 1. If you want to skip recording, then press 2." % bday.recipient_fb_name)
 
 
     return HttpResponse(str(resp), content_type='application/xml')
@@ -54,8 +54,9 @@ def press(request, id):
 
         if Birthday.objects.filter(call=bday.call, status=0).count()>0:
             bday = Birthday.objects.filter(call=bday.call, status=0)[:1].get()
-            resp.say("If you want record birthday wishes for %s, press 1. If you want to skip recording, then press 2." % bday.recipient_fb_name)
-            resp.gather(timeout=5, finishOnKey="1", action="http://callfredo.com/phone/press/"+str(bday.id)+"/", method="POST")
+            with resp.gather(timeout=5, finishOnKey=1, action="http://callfredo.com/phone/press/"+str(bday.id)+"/", method="POST") as g:
+                g.say("If you want record birthday wishes for %s, press 1. If you want to skip recording, then press 2." % bday.recipient_fb_name)
+
         else:
             resp.say("That is it! All wishes have been posted. Have a nice day!")
             resp.hangup()
@@ -117,8 +118,9 @@ def recording(request, id):
 
     if Birthday.objects.filter(call=bday.call, status=0).count()>0:
         bday = Birthday.objects.filter(call=bday.call, status=0)[:1].get()
-        resp.say("If you want record birthday wishes for %s, press 1. If you want to skip recording, then press 2." % bday.recipient_fb_name)
-        resp.gather(timeout=5, finishOnKey="1", action="http://callfredo.com/phone/press/"+str(bday.id)+"/", method="POST")
+        with resp.gather(timeout=5, finishOnKey=1, action="http://callfredo.com/phone/press/"+str(bday.id)+"/", method="POST") as g:
+            g.say("If you want record birthday wishes for %s, press 1. If you want to skip recording, then press 2." % bday.recipient_fb_name)
+
     else:
         resp.say("That is it! All wishes have been posted. Have a nice day!")
         resp.hangup()
