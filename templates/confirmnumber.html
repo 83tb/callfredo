@@ -3,10 +3,12 @@
 {% block content %}
         <P>Fredo has sent you SMS with confirmation code.<BR>
             Please enter it below.</P>
-    <form action="" method="post">{% csrf_token %}
-        <INPUT class="text" type="text"></INPUT>
-        <br />
-        <input type="image" src="{{ STATIC_URL }}img/confirm.png">
-    </form>
+
+        <form action="" method="post">{% csrf_token %}
+            {{ form.code }}
+            {{ form.code.errors }}
+            <br />
+            <input type="image" src="{{ STATIC_URL }}img/confirm.png">
+        </form>
 {% endblock %}
 
