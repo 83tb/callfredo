@@ -51,7 +51,7 @@ def press(request, id):
         bday.save()
 
         if Birthday.objects.filter(call=bday.call, status=0).count()>0:
-            bday = Birthday.objects.filter(call=bday.call, status=0)[:1]
+            bday = Birthday.objects.filter(call=bday.call, status=0)[:1].get()
             resp.say("If you want record birthday wishes for %s, press 1. If you want to skip recording, then press 2." % bday.recipient_fb_name)
             resp.gather(timeout=5, finishOnKey="1", action="http://callfredo.com/phone/press/"+str(bday.id)+"/", method="POST")
         else:
@@ -114,7 +114,7 @@ def recording(request, id):
     resp.pause(length="3")
 
     if Birthday.objects.filter(call=bday.call, status=0).count()>0:
-        bday = Birthday.objects.filter(call=bday.call, status=0)[:1]
+        bday = Birthday.objects.filter(call=bday.call, status=0)[:1].get()
         resp.say("If you want record birthday wishes for %s, press 1. If you want to skip recording, then press 2." % bday.recipient_fb_name)
         resp.gather(timeout=5, finishOnKey="1", action="http://callfredo.com/phone/press/"+str(bday.id)+"/", method="POST")
     else:
