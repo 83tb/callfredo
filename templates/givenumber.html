@@ -3,9 +3,13 @@
 {% block content %}
     <p>OK! Give Fredo your phone number:</p>
 
+    {% if form.phone.errors %}
+        <div class="alert">
+            {{ form.phone.errors }}
+        </div>
+    {% endif %}
     <form action="" method="post">{% csrf_token %}
         {{ form.phone }}
-        {{ form.phone.errors }}
         <br />
         <input type="image" src="{{ STATIC_URL }}img/next.png">
     </form>

@@ -40,12 +40,7 @@ def ConfirmNumberView(request):
     if request.method == 'POST':
         form = ConfirmForm(request.POST)
         if form.is_valid():
-            if request.user.code == form['code'].value():
-                return HttpResponseRedirect(reverse('tryit'))
-            else:
-                form = ConfirmForm()
-        else:
-            form = ConfirmForm()
+            return HttpResponseRedirect(reverse('tryit'))
     else:
         form = ConfirmForm()
 
