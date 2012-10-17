@@ -16,7 +16,7 @@ from accounts.models import User
 @csrf_exempt
 def phone(request, number):
     user = User.objects.get(phone=number)
-    calls = Call.objects.filter(user=user).order_by('-fetched_date')[:1]
+    call = Call.objects.filter(user=user).order_by('-fetched_date')[:1]
     resp = twiml.Response()
     resp.pause(length="3")
 

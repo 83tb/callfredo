@@ -2,7 +2,6 @@ import datetime
 from django.db import models
 from django.contrib.auth.models import User as AuthUser, UserManager
 from accounts import backends
-from phonehome.models import Call, Birthday
 
 class User(AuthUser):
     phone = models.CharField(max_length=40, blank=True)
@@ -17,13 +16,14 @@ class User(AuthUser):
 
     def create_call(self):
         now = datetime.datetime.now()
-        bdays = backends.get_today_bdays(backends.get_friends_birthdays(self))
+        bdays = backends.get_friends_birthdays(backends.get_today_bdays(bdays))
 
         data = {
             'name' : self.get_full_name(),
             'bdays' : bdays,
         }
 
+        from phonehome.models import Call, Birthday
         call = Call(user=self, fetched_date=now, data=data)
         call.save()
 
