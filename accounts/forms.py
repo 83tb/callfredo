@@ -37,7 +37,7 @@ class ConfirmForm(forms.ModelForm):
         self.fields['code'].widget.attrs['class'] = 'text'
 
     def clean_code(self):
-        if self.instance.code != self.cleaned_data['code']:
+        if self.instance.code.lower() != self.cleaned_data['code'].lower():
             raise ValidationError('Code is incorrect.')
         return self.cleaned_data['code']
 
