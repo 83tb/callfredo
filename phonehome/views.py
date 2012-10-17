@@ -43,7 +43,7 @@ def press(request, id):
     bday.recipient_fb_name = request.POST['Digits']
     bday.save()
 
-    if int(request.POST['Digits'])==2:
+    if int(request.POST['Digits'])==1:
         bday.status = 1
         bday.save()
 
