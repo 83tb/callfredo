@@ -43,7 +43,7 @@ def press(request, id):
     if int(request.POST['Digits'])==1:
         bday.status = 1
         bday.save()
-
+        resp.say("Start talking after a beep. Press hash when you are done.")
         resp.record(playBeep=True, finishOnKey="#", timeout=3, method="POST", action="http://callfredo.tklapp.com/phone/recording/"+str(bday.id)+"/")
     else:
         bday.status = 2
