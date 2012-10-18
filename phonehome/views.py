@@ -18,7 +18,7 @@ def phone(request, number):
     user = User.objects.get(phone=number)
     call = Call.objects.filter(user=user).order_by('-fetched_date')[:1]
     resp = twiml.Response()
-    resp.pause(length="3")
+    resp.pause(length="1")
 
     if Birthday.objects.filter(call=call).count()==0:
         resp.say("No one of your friends has birthday today. Have a nice day!")
@@ -29,7 +29,7 @@ def phone(request, number):
             resp.say(bday.recipient_fb_name)
 
         for bday in bdays:
-            with resp.gather(timeout=2, action="http://callfredo.com/phone/press/"+str(bday.id)+"/", method="POST") as g:
+            with resp.gather(timeout=2, numDigits=1, action="http://callfredo.tklapp.com/phone/press/"+str(bday.id)+"/", method="POST") as g:
                 g.say("If you want record birthday wishes for %s, press 1. If you want to skip recording, then press 2." % bday.recipient_fb_name)
 
 
@@ -39,20 +39,19 @@ def phone(request, number):
 def press(request, id):
     bday = Birthday.objects.get(id=id)
     resp = twiml.Response()
-    resp.pause(length="3")
 
     if int(request.POST['Digits'])==1:
         bday.status = 1
         bday.save()
 
-        resp.record(playBeep=True, maxLength="10", method="POST", action="http://callfredo.com/phone/recording/"+str(bday.id)+"/")
+        resp.record(playBeep=True, finishOnKey="#", timeout=3, method="POST", action="http://callfredo.tklapp.com/phone/recording/"+str(bday.id)+"/")
     else:
         bday.status = 2
         bday.save()
 
         if Birthday.objects.filter(call=bday.call, status=0).count()>0:
             bday = Birthday.objects.filter(call=bday.call, status=0)[:1].get()
-            with resp.gather(timeout=3, action="http://callfredo.com/phone/press/"+str(bday.id)+"/", method="POST") as g:
+            with resp.gather(timeout=2, numDigits=1, action="http://callfredo.tklapp.com/phone/press/"+str(bday.id)+"/", method="POST") as g:
                 g.say("If you want record birthday wishes for %s, press 1. If you want to skip recording, then press 2." % bday.recipient_fb_name)
 
         else:
@@ -71,7 +70,7 @@ def call(request, number):
     client = TwilioRestClient(settings.ACCOUNT_SID, settings.AUTH_TOKEN)
 
     call = client.calls.create(to=number, from_=settings.OUTGOING_NUMBER,
-                               url='http://callfredo.com/phone/twiml/%s/' % number)
+                               url='http://callfredo.tklapp.com/phone/twiml/%s/' % number)
     user.last_call_date = today
     user.save()
 
@@ -102,7 +101,7 @@ def recording(request, id):
 
         bday.recording = recording
         bday.save()
-        url = str('http://callfredo.com/wishes/') + str(bday.recording.id) + str('/')
+        url = str('http://callfredo.tklapp.com/wishes/') + str(bday.recording.id) + str('/')
         try:
             api.put_wall_post("Happy birthday!",
                               profile_id=str(bday.recipient_fb_id),
@@ -111,11 +110,10 @@ def recording(request, id):
             user = None
 
     resp = twiml.Response()
-    resp.pause(length="3")
 
     if Birthday.objects.filter(call=bday.call, status=0).count()>0:
         bday = Birthday.objects.filter(call=bday.call, status=0)[:1].get()
-        with resp.gather(timeout=3, action="http://callfredo.com/phone/press/"+str(bday.id)+"/", method="POST") as g:
+        with resp.gather(timeout=2, numDigits=1, action="http://callfredo.tklapp.com/phone/press/"+str(bday.id)+"/", method="POST") as g:
             g.say("If you want record birthday wishes for %s, press 1. If you want to skip recording, then press 2." % bday.recipient_fb_name)
 
     else:

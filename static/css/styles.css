@@ -1,7 +1,7 @@
 @import url("layout.css");
 
 html {
-    background: url("/static/img/bgbirth.jpg") no-repeat center center fixed;
+    background: #000;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

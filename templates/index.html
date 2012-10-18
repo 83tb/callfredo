@@ -1,14 +1,5 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <p style="font-size: 2em; margin: 10px 0 30px 0;">Birthday wishes meaningful again.</p>
-
-    <p style="margin-bottom:30px;">
-        Call Fredo anytime you want to wish your friends happy birthday.<br />
-        Record wishes and let Fredo post them on your friend's facebook wall for you.<br />
-        Make it matter.
-    </p>
-
     <a href="{% url socialauth_begin 'facebook' %}"><img src="{{ STATIC_URL }}img/facebooklogin.png" /></a>
-
 {% endblock %}

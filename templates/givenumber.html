@@ -11,6 +11,6 @@
     <form action="" method="post">{% csrf_token %}
         {{ form.phone }}
         <br />
-        <input type="image" src="{{ STATIC_URL }}img/next.png">
+        <input type="submit" value="Next">
     </form>
 {% endblock %}
