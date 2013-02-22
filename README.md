@@ -1,8 +1,13 @@
 callfredo
 =========
 
+Callfredo = Facebook + Twilio. It will call users and ask them to record happy birthday wishes, and then post it to their Facbeook Wall.
+
+
+
 Quick start
 -----------
+
 
 <pre>
 cd callfredo
